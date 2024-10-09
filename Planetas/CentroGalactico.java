@@ -1,5 +1,5 @@
 package Planetas;
-
+import Interactuable.*;
 public class CentroGalactico extends Planeta {
 
     public CentroGalactico() {
@@ -9,7 +9,7 @@ public class CentroGalactico extends Planeta {
 
     @Override
     public boolean visitar(Jugador jugador) {
-        if (jugador.getNave().getEficiencia() > 0.5) {
+        if (Nave.getEficienciaCombustible() > 0.5) {
             System.out.println("El jugador ha llegado al Centro Galáctico, el final de su travesía.");
             System.out.println("El lugar es hostil, con campos gravitatorios extremos y fenómenos estelares.");
             return true;
@@ -21,7 +21,7 @@ public class CentroGalactico extends Planeta {
     
     public int calcularConsumoEnergia() {
         System.out.println("El Centro Galáctico consume toda la energía restante del jugador.");
-        return Integer.MAX_VALUE;  // Consume toda la energía
+        return Integer.MAX_VALUE;
     }
 }
 

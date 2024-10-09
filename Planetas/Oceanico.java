@@ -1,4 +1,5 @@
 package Planetas;
+import Interactuable.*;
 
 public class Oceanico extends Planeta {
     private int profundidad;

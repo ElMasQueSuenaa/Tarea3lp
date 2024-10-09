@@ -1,6 +1,5 @@
 package Planetas;
-
-import java.util.Random;
+import Interactuable.*;
 
 public class Helado extends Planeta {
     private int temperatura;

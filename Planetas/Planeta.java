@@ -1,5 +1,5 @@
 package Planetas;
-
+import Interactuable.*;
 public abstract class Planeta {
     protected int radio;                 
     protected int cristalesHidrogeno;     

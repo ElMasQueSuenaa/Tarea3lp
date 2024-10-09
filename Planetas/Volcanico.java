@@ -1,5 +1,5 @@
 package Planetas;
-
+import Interactuable.*;
 import java.util.Random;
 
 public class Volcanico extends Planeta {
