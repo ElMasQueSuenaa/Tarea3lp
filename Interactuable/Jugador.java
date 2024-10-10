@@ -16,7 +16,15 @@ public class Jugador {
     }
 
     public void setEnergia(float energia) {
-        this.unidadesEnergiaProteccion = energia;
+        this.unidadesEnergiaProteccion += energia;
+    }
+
+    public void bebidaEnergetica() {
+        this.unidadesEnergiaProteccion = 100.0f;
+    }
+
+    public void setEficiencia(float eficiencia) {
+        this.eficienciaEnergiaProteccion += eficiencia;
     }
 
     public void recolectarCristales(int cantidad) {
@@ -36,6 +44,42 @@ public class Jugador {
 
     public void recolectarUranio(int cantidad) {
         this.uranioRecolectado += cantidad;
+        //System.out.println("Uranio recolectado: " + this.uranioRecolectado);
+    }
+
+    public int getCristalesHidrogeno(){
+        return cristalesRecolectado;
+    }
+
+    public int getFloresDeSodio(){
+        return floresRecolectada;
+    }
+
+    public int getPlatino(){
+        return platinoRecolectado;
+    }
+
+    public int getUranio(){
+        return uranioRecolectado;
+    }
+
+    public void tradeCristales(int cantidad) {
+        this.cristalesRecolectado -= cantidad;
+        //System.out.println("Cristales recolectados: " + this.cristalesRecolectado);
+    }
+
+    public void tradeFlores(int cantidad) {
+        this.floresRecolectada -= cantidad;
+        //System.out.println("Flores recolectadas: " + this.floresRecolectada);
+    }
+
+    public void tradePlatino(int cantidad) {
+        this.platinoRecolectado -= cantidad;
+        //System.out.println("Platino recolectado: " + this.platinoRecolectado);
+    }
+
+    public void traderUranio(int cantidad) {
+        this.uranioRecolectado -= cantidad;
         //System.out.println("Uranio recolectado: " + this.uranioRecolectado);
     }
 
