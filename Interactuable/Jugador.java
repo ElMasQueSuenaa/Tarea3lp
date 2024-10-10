@@ -1,39 +1,74 @@
 package Interactuable;
 
 public class Jugador {
-    private float cantEnergiaProteccion;
+    private int cristalesRecolectado;
+    private int floresRecolectada;
+    private int platinoRecolectado;
+    private int uranioRecolectado;
+    private float unidadesEnergiaProteccion;
     private float eficienciaEnergiaProteccion;
 
     public Jugador() {
-        this.cantEnergiaProteccion = 100.0f;
+        this.unidadesEnergiaProteccion = 100.0f;
         this.eficienciaEnergiaProteccion = 0.0f;
+        this.cristalesRecolectado = 0;
+        this.floresRecolectada = 0;
     }
 
-    public void recargarEnergiaProteccion(int sodio) {
-        if (sodio > 0) {
-            float unidadesRecargadas = 0.65f * sodio * (1 + eficienciaEnergiaProteccion);
-            cantEnergiaProteccion += unidadesRecargadas; 
-            System.out.println("Energía recargada con " + sodio + " unidades de Sodio.");
-            System.out.println("Energía de Protección actual: " + cantEnergiaProteccion + " unidades.");
-        } else {
-            System.out.println("No se puede recargar energía con una cantidad negativa o nula de Sodio.");
-        }
+    public void setEnergia(float energia) {
+        this.unidadesEnergiaProteccion = energia;
     }
 
-    public float getcantEnergiaProteccion() {
-        return cantEnergiaProteccion;
+    public void recolectarCristales(int cantidad) {
+        this.cristalesRecolectado += cantidad;
+        //System.out.println("Cristales recolectados: " + this.cristalesRecolectado);
     }
 
-    public float getEficienciaEnergiaProteccion() {
+    public void recolectarFlores(int cantidad) {
+        this.floresRecolectada += cantidad;
+        //System.out.println("Flores recolectadas: " + this.floresRecolectada);
+    }
+
+    public void recolectarPlatino(int cantidad) {
+        this.platinoRecolectado += cantidad;
+        //System.out.println("Platino recolectado: " + this.platinoRecolectado);
+    }
+
+    public void recolectarUranio(int cantidad) {
+        this.uranioRecolectado += cantidad;
+        //System.out.println("Uranio recolectado: " + this.uranioRecolectado);
+    }
+
+    public float getEnergia() {
+        return unidadesEnergiaProteccion;
+    }
+
+    public float getEficienciatraje(){
         return eficienciaEnergiaProteccion;
     }
 
-    public void setEficienciaEnergiaProteccion(float eficienciaEnergiaProteccion) {
-        this.eficienciaEnergiaProteccion = eficienciaEnergiaProteccion;
+    public void comercio(int tipo_trade){
+
     }
 
-    public void setcantEnergiaProteccion(float cantEnergiaProteccion) {
-        this.cantEnergiaProteccion = cantEnergiaProteccion;
+    //crear recarga de traje
+    public void recargarEnergiaProteccion(int sodio){
+        if(this.unidadesEnergiaProteccion + sodio > 100.0f && this.floresRecolectada > 0){
+            this.unidadesEnergiaProteccion = 100.0f;
+            this.floresRecolectada = (int)(this.unidadesEnergiaProteccion - sodio);
+            System.out.println("Traje recargado al 100%");  
+            System.out.println("Flores de sodio restantes: " + this.floresRecolectada);
+        }
+        else if(this.unidadesEnergiaProteccion + sodio <= 100.0f && this.floresRecolectada > 0){
+            this.unidadesEnergiaProteccion += sodio;
+            this.floresRecolectada = (int)(this.unidadesEnergiaProteccion - sodio);
+            System.out.println("Traje recargado al " + this.unidadesEnergiaProteccion + "%");
+            System.out.println("Flores de sodio restantes: " + this.floresRecolectada);
+        }
+        else{
+            System.out.println("No tienes suficientes flores de sodio para recargar el traje");
+        }	
     }
 
 }
+

@@ -52,7 +52,7 @@ public class Nave {
     }
 
     public void setUnidadesCombustible(float unidadesCombustible) {
-        this.unidadesCombustible = unidadesCombustible;
+        Nave.unidadesCombustible = unidadesCombustible;
     }
 
     public static float getEficienciaCombustible() {
@@ -60,6 +60,6 @@ public class Nave {
     }
 
     public void setEficienciaCombustible(float eficienciaCombustible) {
-        this.eficienciaCombustible = eficienciaCombustible;
+        Nave.eficienciaCombustible = eficienciaCombustible;
     }
 }

@@ -13,13 +13,7 @@ public abstract class Planeta {
     }
 
     // Método para visitar el planeta
-    public boolean visitar(Jugador jugador) {
-        System.out.println("El jugador ha aterrizado en el planeta con un radio de " + radio + " metros.");
-        System.out.println("Recursos disponibles:");
-        System.out.println("Cristales de Hidrógeno: " + cristalesHidrogeno);
-        System.out.println("Flores de Sodio: " + floresDeSodio);
-        return true;
-    }
+    public abstract boolean visitar(Jugador jugador);
 
     // Método para extraer recursos
     public int extraerRecursos(int tipo, int cantidad) {
@@ -48,10 +42,12 @@ public abstract class Planeta {
     }
 
     // Método para salir del planeta
-    public boolean salir() {
-        System.out.println("El jugador ha abandonado el planeta.");
+    public boolean salir(Jugador jugador){
+        System.out.println("Saliendo del planeta...");
         return true;
     }
+
+    public abstract int extraerRecursos(int tipo);
 
     // Getters y Setters para los atributos
     public int getRadio() {
