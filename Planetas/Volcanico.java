@@ -55,31 +55,60 @@ public class Volcanico extends Planeta {
             return true;
         }
     }
-        @Override
-        public int extraerRecursos(int tipo){
-            int cantidad_recurso = 0;
-            if(tipo == 1){
-                cantidad_recurso = this.getCristalesHidrogeno();
-            }
-            else if(tipo == 2){
-                cantidad_recurso = this.getFloresDeSodio();
-            }
-            else if(tipo == 3){
-                cantidad_recurso = this.getPlatino();
-            }
-            return cantidad_recurso;
-        }
-        
-        public int getCristalesHidrogeno(){
-            return cristalesHidrogeno;
-        }
-        
-        public int getFloresDeSodio(){
-            return floresDeSodio;
+    @Override
+    public int extraerRecursos(int tipo) {
+        int cantidadDisponible = 0;
+        int cantidadExtraer = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        if (tipo == 1) {
+            cantidadDisponible = this.getCristalesHidrogeno();
+        } else if (tipo == 2) {
+            cantidadDisponible = this.getFloresDeSodio();
+        } else if (tipo == 3) {
+            cantidadDisponible = this.getPlatino();
+        } else {
+            System.out.println("FCE: Tipo de recurso inválido.");
+            scanner.close();
+            return 0;
         }
 
-        public int getPlatino(){
-            return platino;
+        System.out.println("FCE: ¿Cuánta cantidad deseas extraer? (Disponible: " + cantidadDisponible + ")");
+        cantidadExtraer = scanner.nextInt();
+
+        if (cantidadExtraer > cantidadDisponible) {
+            System.out.println("FCE: No hay suficiente recurso disponible. Solo hay " + cantidadDisponible + " unidades.");
+            scanner.close();
+            return 0;
         }
+
+        if (tipo == 1) {
+            this.setCristalesHidrogeno(cantidadDisponible - cantidadExtraer);
+        } else if (tipo == 2) {
+            this.setFloresDeSodio(cantidadDisponible - cantidadExtraer);
+        } else if (tipo == 3) {
+            this.setPlatino(cantidadDisponible - cantidadExtraer);
+        }
+    
+        scanner.close();
+        return cantidadExtraer;
+    }
+
+
+    public void setPlatino(int platino){
+        this.platino = platino;
+    }
+
+    public int getCristalesHidrogeno(){
+        return cristalesHidrogeno;
+    }
+        
+    public int getFloresDeSodio(){
+        return floresDeSodio;
+    }
+
+    public int getPlatino(){
+        return platino;
+    }
 
 }

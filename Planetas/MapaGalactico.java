@@ -9,11 +9,14 @@ public class MapaGalactico {
     private List<Planeta> planetas; 
     private Random random;
     private int generadoCG;
+    private int posicionActual;
 
     public MapaGalactico() {
         this.planetas = new ArrayList<>(); 
         this.random = new Random();    
-        generarHastaPlaneta(1); 
+        this.generadoCG = 0;
+        this.posicionActual = 0;
+        generarHastaPlaneta(posicionActual + 1); //siempre será 1
     }
 
     public void generarHastaPlaneta(int numPlanetas) {
@@ -43,7 +46,8 @@ public class MapaGalactico {
                 generadoCG = 1;
                 return generarCentroGalactico();
             }
-            else {return generarVolcanico();
+            else {
+                return generarVolcanico();
             }
         }
     }
@@ -85,6 +89,28 @@ public class MapaGalactico {
 
     private Planeta generarCentroGalactico() {
         return new CentroGalactico();
+    }
+
+    public void setPosicion(int posicion){
+        posicionActual = posicion;
+    }
+
+    public String getTipoPlanetaActual() {
+        if (posicionActual >= 0 && posicionActual < planetas.size()) {
+            Planeta planetaActual = planetas.get(posicionActual);
+            return planetaActual.getClass().getSimpleName();  // Retorna el nombre simple de la clase del planeta
+        } else {
+            return "No hay planetas en esta posición.";
+        }
+    }
+
+    public Planeta getPlanetaActual() {
+        if (posicionActual >= 0 && posicionActual < planetas.size()) {
+            return planetas.get(posicionActual);  // Devuelve el planeta en la posición actual
+        } else {
+            System.out.println("Posición fuera de rango.");
+            return null;  // Si no hay un planeta en esa posición, devuelve null
+        }
     }
 
 }

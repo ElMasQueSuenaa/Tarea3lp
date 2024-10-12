@@ -18,8 +18,8 @@ public class Radiactivo extends Planeta {
         float aux;
         Scanner scanner = new Scanner(System.in);
         float energiaConsumida = (float)(0.3 * radiacion);
-        System.out.println("Visitando planeta Radiactivo con radiacion de: " + radiacion + "sieverts");
-        System.out.println("Deseas extraer recursos del planeta? (true/false)");
+        System.out.println("FCE: Visitando planeta Radiactivo con radiacion de: " + radiacion + "sieverts");
+        System.out.println("FCE: Deseas extraer recursos del planeta? (true/false)");
         boolean extraer = scanner.nextBoolean();
         if (extraer == true){
             System.out.println("Que recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para Uranio");
@@ -38,8 +38,8 @@ public class Radiactivo extends Planeta {
 
             aux = (float)(0.5 * cantidad_recurso * (energiaConsumida/100)* (1 - jugador.getEficienciatraje()));
             if (jugador.getEnergia() <= aux){
-                System.out.println("El jugador no tiene suficiente energía para explorar más.");
-                System.out.println("Todo comienza de nuevo");
+                System.out.println("FCE: Oh no, insuficiente energía para explorar más.");
+                System.out.println("FCE: Nos veremos otra vez número" + jugador.getNumeroJugador());
                 scanner.close();
                 return false;
             }
@@ -57,18 +57,46 @@ public class Radiactivo extends Planeta {
     }
 
     @Override
-    public int extraerRecursos(int tipo){
-        int cantidad_recurso = 0;
-        if(tipo == 1){
-            cantidad_recurso = this.getCristalesHidrogeno();
+    public int extraerRecursos(int tipo) {
+        int cantidadDisponible = 0;
+        int cantidadExtraer = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        if (tipo == 1) {
+            cantidadDisponible = this.getCristalesHidrogeno();
+        } else if (tipo == 2) {
+            cantidadDisponible = this.getFloresDeSodio();
+        } else if (tipo == 3) {
+            cantidadDisponible = this.getUranio();
+        } else {
+            System.out.println("FCE: Tipo de recurso inválido.");
+            scanner.close();
+            return 0;
         }
-        else if(tipo == 2){
-            cantidad_recurso = this.getFloresDeSodio();
+
+        System.out.println("FCE: ¿Cuánta cantidad deseas extraer? (Disponible: " + cantidadDisponible + ")");
+        cantidadExtraer = scanner.nextInt();
+
+        if (cantidadExtraer > cantidadDisponible) {
+            System.out.println("FCE: No hay suficiente recurso disponible. Solo hay " + cantidadDisponible + " unidades.");
+            scanner.close();
+            return 0;
         }
-        else if(tipo == 3){
-            cantidad_recurso = this.getUranio();
+
+        if (tipo == 1) {
+            this.setCristalesHidrogeno(cantidadDisponible - cantidadExtraer);
+        } else if (tipo == 2) {
+            this.setFloresDeSodio(cantidadDisponible - cantidadExtraer);
+        } else if (tipo == 3) {
+            this.setUranio(cantidadDisponible - cantidadExtraer);
         }
-        return cantidad_recurso;
+    
+        scanner.close();
+        return cantidadExtraer;
+    }
+
+    public void setUranio(int uranio){
+        this.uranio = uranio;
     }
     
     public int getCristalesHidrogeno(){

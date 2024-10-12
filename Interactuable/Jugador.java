@@ -1,5 +1,7 @@
 package Interactuable;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Jugador {
     private int cristalesRecolectado;
     private int floresRecolectada;
@@ -7,12 +9,16 @@ public class Jugador {
     private int uranioRecolectado;
     private float unidadesEnergiaProteccion;
     private float eficienciaEnergiaProteccion;
+    private int numeroJugador;
 
     public Jugador() {
         this.unidadesEnergiaProteccion = 100.0f;
         this.eficienciaEnergiaProteccion = 0.0f;
         this.cristalesRecolectado = 0;
         this.floresRecolectada = 0;
+        this.platinoRecolectado = 0;
+        this.uranioRecolectado = 0;
+        this.numeroJugador = ThreadLocalRandom.current().nextInt(1, 100001);
     }
 
     public void setEnergia(float energia) {
@@ -112,6 +118,10 @@ public class Jugador {
         else{
             System.out.println("No tienes suficientes flores de sodio para recargar el traje");
         }	
+    }
+
+    public int getNumeroJugador(){
+        return numeroJugador;
     }
 
 }

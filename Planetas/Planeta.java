@@ -15,32 +15,6 @@ public abstract class Planeta {
     // Método para visitar el planeta
     public abstract boolean visitar(Jugador jugador);
 
-    // Método para extraer recursos
-    public int extraerRecursos(int tipo, int cantidad) {
-        if (tipo == 1) {  // 1 para Cristales de Hidrógeno
-            if (cantidad <= cristalesHidrogeno) {
-                cristalesHidrogeno -= cantidad;
-                System.out.println("Se han extraído " + cantidad + " unidades de Cristales de Hidrógeno.");
-                return cantidad;
-            } else {
-                System.out.println("No hay suficientes Cristales de Hidrógeno para extraer.");
-                return 0;
-            }
-        } else if (tipo == 2) {  // 2 para Flores de Sodio
-            if (cantidad <= floresDeSodio) {
-                floresDeSodio -= cantidad;
-                System.out.println("Se han extraído " + cantidad + " unidades de Flores de Sodio.");
-                return cantidad;
-            } else {
-                System.out.println("No hay suficientes Flores de Sodio para extraer.");
-                return 0;
-            }
-        } else {
-            System.out.println("Tipo de recurso no válido.");
-            return 0;
-        }
-    }
-
     // Método para salir del planeta
     public boolean salir(Jugador jugador){
         System.out.println("Saliendo del planeta...");
@@ -48,6 +22,7 @@ public abstract class Planeta {
     }
 
     public abstract int extraerRecursos(int tipo);
+
 
     // Getters y Setters para los atributos
     public int getRadio() {

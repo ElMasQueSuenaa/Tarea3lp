@@ -56,15 +56,37 @@ public class Helado extends Planeta implements tieneAsentamientos{
     }
 
     @Override
-    public int extraerRecursos(int tipo){
-        int cantidad_recurso = 0;
-        if(tipo == 1){
-            cantidad_recurso = this.getCristalesHidrogeno();
+    public int extraerRecursos(int tipo) {
+        int cantidadDisponible = 0;
+        int cantidadExtraer = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        if (tipo == 1) {
+            cantidadDisponible = this.getCristalesHidrogeno();
+        } else if (tipo == 2) {
+            cantidadDisponible = this.getFloresDeSodio();
+        } else {
+            System.out.println("FCE: Tipo de recurso inválido.");
+            scanner.close();
+            return 0;
         }
-        else if(tipo == 2){
-            cantidad_recurso = this.getFloresDeSodio();
+
+        System.out.println("FCE: ¿Cuánta cantidad deseas extraer? (Disponible: " + cantidadDisponible + ")");
+        cantidadExtraer = scanner.nextInt();
+
+        if (cantidadExtraer > cantidadDisponible) {
+            System.out.println("FCE: No hay suficiente recurso disponible. Solo hay " + cantidadDisponible + " unidades.");
+            scanner.close();
+            return 0;
         }
-        return cantidad_recurso;
+
+        if (tipo == 1) {
+            this.setCristalesHidrogeno(cantidadDisponible - cantidadExtraer);
+        } else if (tipo == 2) {
+            this.setFloresDeSodio(cantidadDisponible - cantidadExtraer);
+        }
+        scanner.close();
+        return cantidadExtraer;
     }
     
     public int getCristalesHidrogeno(){
@@ -79,6 +101,7 @@ public class Helado extends Planeta implements tieneAsentamientos{
     public void visitarAsentamientos(Jugador jugador) {
         int precioTrade1 = 0, precioTrade2 = 0, precioTrade3 = 0, precioTrade4 = 0, precioTrade5 = 0;
         float eficienciaTrade1 = 0.0f;
+        Scanner scanner = new Scanner(System.in);
         boolean acepta = false;
         int tradeoffer2 = 0, tradeoffer3 = 0, tradeoffer4 = 0, tradeoffer5 = 0;
         int probabilidad = (int)(Math.random()*100);
@@ -131,7 +154,6 @@ public class Helado extends Planeta implements tieneAsentamientos{
                 }
             }
             System.out.println("Quieres ver tu inventario antes de realizar un trade? (true/false)");
-            Scanner scanner = new Scanner(System.in);
             boolean verInventario = scanner.nextBoolean();
             if(verInventario){
                 System.out.println("Cristales de Hidrógeno:" + jugador.getCristalesHidrogeno());
@@ -230,7 +252,6 @@ public class Helado extends Planeta implements tieneAsentamientos{
                     }
                 }
                 System.out.println("Elige el numero de la oferta que deseas realizar (1-5)(0 para no comprar nada)");
-                scanner = new Scanner(System.in);
                 quiereTrade = scanner.nextInt();
             }
             if(quiereTrade == 0){
