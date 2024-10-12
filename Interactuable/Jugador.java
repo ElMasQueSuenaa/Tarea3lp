@@ -78,7 +78,7 @@ public class Jugador {
         //System.out.println("Platino recolectado: " + this.platinoRecolectado);
     }
 
-    public void traderUranio(int cantidad) {
+    public void tradeUranio(int cantidad) {
         this.uranioRecolectado -= cantidad;
         //System.out.println("Uranio recolectado: " + this.uranioRecolectado);
     }
@@ -115,4 +115,3 @@ public class Jugador {
     }
 
 }
-

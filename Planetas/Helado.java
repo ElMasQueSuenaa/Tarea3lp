@@ -90,7 +90,7 @@ public class Helado extends Planeta implements tieneAsentamientos{
         }
         if(this.asentamiento){
             System.out.println("Visitando asentamiento en planeta Helado");
-            System.out.println("Hay comerciantes con pieles de animales que no conoces, todos te miran por vestir de distinta manera");
+            System.out.println("Hay personas con pieles de animales que no conoces, todos te miran por vestir de distinta manera");
             System.out.println("Condiciones dificiles, generan gente dificil");
             System.out.println("Debería haber un comerciante en alguna cueva");
             System.out.println("La gente de este lugar debería tener las comunidades bajo tierra, para protegerse de las tormentas de hielo");
@@ -130,15 +130,19 @@ public class Helado extends Planeta implements tieneAsentamientos{
                     tradeoffer5 = tradeoffer;
                 }
             }
-            System.out.println("Elige el numero de la oferta que deseas realizar (1-5)(0 para no comprar nada)");
+            System.out.println("Quieres ver tu inventario antes de realizar un trade? (true/false)");
             Scanner scanner = new Scanner(System.in);
+            boolean verInventario = scanner.nextBoolean();
+            if(verInventario){
+                System.out.println("Cristales de Hidrógeno:" + jugador.getCristalesHidrogeno());
+                System.out.println("Flores de Sodio:" + jugador.getFloresDeSodio());
+                System.out.println("Platino:" + jugador.getPlatino());
+                System.out.println("Uranio:" + jugador.getUranio());
+            }
+            System.out.println("Elige el numero de la oferta que deseas realizar (1-5)(0 para no comprar nada)");
             int quiereTrade = scanner.nextInt();
             while(quiereTrade != 0){
-                if(quiereTrade == 0){
-                    System.out.println("El mercader se ríe de ti y te echa de la taberna");
-                    System.out.println("En un planeta así el tiempo es oro, no puedes perderlo");
-                }
-                else if(quiereTrade == 1){
+                if(quiereTrade == 1){
                     if(jugador.getPlatino() < precioTrade1){
                         System.out.println("No tienes suficiente platino para realizar el trade");
                         System.out.println("El mercader se ofende y te echa de la taberna");
@@ -163,7 +167,7 @@ public class Helado extends Planeta implements tieneAsentamientos{
                         jugador.tradeCristales(tradeoffer2);
                         System.out.println("Trade realizado con exito");
                         System.out.println("Flores de sodio restantes: " + jugador.getFloresDeSodio());
-                        System.out.println("Cristales de Hidrógeno restantes: " + tradeoffer2);
+                        System.out.println("Cristales de Hidrógeno restantes: " + jugador.getCristalesHidrogeno());
                     }
                 }
                 else if(quiereTrade == 3){
@@ -177,7 +181,7 @@ public class Helado extends Planeta implements tieneAsentamientos{
                         jugador.tradePlatino(tradeoffer3);
                         System.out.println("Trade realizado con exito");
                         System.out.println("Flores de sodio restantes: " + jugador.getFloresDeSodio());
-                        System.out.println("Platino restante: " + tradeoffer3);
+                        System.out.println("Platino restante: " + jugador.getPlatino());
                     }
                 }
                 else if(quiereTrade == 4){
@@ -188,10 +192,10 @@ public class Helado extends Planeta implements tieneAsentamientos{
                     }
                     else{
                         jugador.recolectarCristales(precioTrade4);
-                        jugador.traderUranio(tradeoffer4);
+                        jugador.tradeUranio(tradeoffer4);
                         System.out.println("Trade realizado con exito");
                         System.out.println("Cristales de Hidrógeno restantes: " + jugador.getCristalesHidrogeno());
-                        System.out.println("Uranio restante: " + tradeoffer4);
+                        System.out.println("Uranio restante: " + jugador.getUranio());
                     }
                 }
                 else if(quiereTrade == 5){
@@ -205,7 +209,7 @@ public class Helado extends Planeta implements tieneAsentamientos{
                         jugador.tradePlatino(tradeoffer5);
                         System.out.println("Trade realizado con exito");
                         System.out.println("Cristales de Hidrógeno restantes: " + jugador.getCristalesHidrogeno());
-                        System.out.println("Platino restante: " + tradeoffer5);
+                        System.out.println("Platino restante: " + jugador.getPlatino());
                     }
                 }
                 else{
@@ -215,18 +219,25 @@ public class Helado extends Planeta implements tieneAsentamientos{
                     acepta = scanner.nextBoolean();
                     if(acepta){
                         System.out.println("La bebida te hace sentir extraño, pero te sientes con mas energia");
-                        System.out.println("Tu energia se a restablecido 100%");
+                        System.out.println("Tu energia se a restablecido a 100");
+                        System.out.println("Malo o bueno, quedaste como partiste");
                         jugador.bebidaEnergetica();
                     }
                     else{
                         System.out.println("El mercader te echa de la taberna");
                         System.out.println("En un planeta así el tiempo es oro, no puedes perderlo");
+                        break;
                     }
                 }
                 System.out.println("Elige el numero de la oferta que deseas realizar (1-5)(0 para no comprar nada)");
                 scanner = new Scanner(System.in);
                 quiereTrade = scanner.nextInt();
             }
+            if(quiereTrade == 0){
+                System.out.println("El mercader se ríe de ti y te echa de la taberna");
+                System.out.println("En un planeta así el tiempo es oro, no puedes perderlo");
+            }
+            scanner.close();
         }
         else {
             System.out.println("No hay asentamientos en este planeta");

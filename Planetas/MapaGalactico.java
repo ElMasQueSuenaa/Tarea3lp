@@ -1,6 +1,5 @@
 package Planetas;
 
-import Interactuable.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,11 +16,11 @@ public class MapaGalactico {
         generarHastaPlaneta(1); 
     }
 
-    private void generarHastaPlaneta(int numPlanetas) {
+    public void generarHastaPlaneta(int numPlanetas) {
         while (planetas.size() < numPlanetas) {
-            Planeta nuevoPlaneta = generadorPlaneta();  // Generar un planeta aleatorio
-            planetas.add(nuevoPlaneta);                 // Agregarlo a la lista
-            System.out.println("Generado: " + nuevoPlaneta);
+            Planeta nuevoPlaneta = generadorPlaneta();  
+            planetas.add(nuevoPlaneta);                 
+            System.out.println("Generado: " + nuevoPlaneta); //Para depurar
         }
     }
 
@@ -87,5 +86,6 @@ public class MapaGalactico {
     private Planeta generarCentroGalactico() {
         return new CentroGalactico();
     }
+
 }
 

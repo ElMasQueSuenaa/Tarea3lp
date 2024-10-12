@@ -30,4 +30,3 @@ public class CentroGalactico extends Planeta {
         return 0;
     }
 }
-

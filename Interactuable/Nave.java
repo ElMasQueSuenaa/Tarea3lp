@@ -1,5 +1,7 @@
 package Interactuable;
 
+import Planetas.MapaGalactico;
+
 public class Nave {
     private static float unidadesCombustible;           
     private static float eficienciaCombustible;         
@@ -9,8 +11,8 @@ public class Nave {
         Nave.eficienciaCombustible = 0.0f;       
     }
 
-    public void recargarCombustible(int hidrogeno) {
-        if (hidrogeno > 0) {
+    public void recargarPropulsores(int hidrogeno) {
+        if (hidrogeno> 0) {
             float unidadesRecargadas = 0.6f * hidrogeno * (1 + eficienciaCombustible);
             unidadesCombustible += unidadesRecargadas;
             System.out.println("Combustible recargado con " + hidrogeno + " unidades de Hidrógeno.");
@@ -30,6 +32,10 @@ public class Nave {
         }
     }
 
+    public boolean viajarPlaneta(MapaGalactico MG, int direccion, int tamanoSalto){
+        return true;
+    }
+
     public boolean realizarSalto(int salto) {
         float consumo = calcularConsumo(salto);
         if (unidadesCombustible >= consumo) {
@@ -41,11 +47,7 @@ public class Nave {
             System.out.println("No hay suficiente combustible para realizar el salto.");
             return false;
         }
-    }
-
-    public float getNave() {
-        return unidadesCombustible;
-    }   
+    } 
 
     public float getUnidadesCombustible() {
         return unidadesCombustible;
