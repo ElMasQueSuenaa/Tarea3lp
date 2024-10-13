@@ -50,7 +50,7 @@ public class Radiactivo extends Planeta {
             }
         }
         else{
-            System.out.println("Volviendo a la orbita...");
+            System.out.println("FCE: Volviendo a la orbita...");
             scanner.close();
             return true;
         }

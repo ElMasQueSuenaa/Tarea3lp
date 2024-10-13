@@ -38,8 +38,8 @@ public class Volcanico extends Planeta {
 
             aux = (float)(0.5 * cantidad_recurso * (energiaConsumida/100)* (1 - jugador.getEficienciatraje()));
             if (jugador.getEnergia() <= aux){
-                System.out.println("El jugador no tiene suficiente energía para explorar más.");
-                System.out.println("Todo comienza de nuevo");
+                System.out.println("FCE: Oh no, insuficiente energía para explorar más.");
+                System.out.println("FCE: Nos veremos otra vez número" + jugador.getNumeroJugador());
                 scanner.close();
                 return false;
             }

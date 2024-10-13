@@ -8,9 +8,14 @@ import Interfaz.tieneAsentamientos;
 public class Oceanico extends Planeta implements tieneAsentamientos{
     private int profundidad;
     private boolean asentamiento;
+    private int cristalesHidrogeno;
+    private int floresDeSodio;
+    private int radio;
 
     public Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad) {
         super(radio, cristalesHidrogeno, floresDeSodio);
+        this.radio = radio;
+        this.profundidad = profundidad;
     }
 
     @Override
@@ -19,7 +24,7 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
         float aux;
         Scanner scanner = new Scanner(System.in);
         float energiaConsumida = (float)(0.002 * Math.pow(profundidad, 2));
-        System.out.println("Visitando planeta Oceánico con profundidad de: " + profundidad + "Metros");
+        System.out.println("Visitando planeta Oceánico con profundidad de: " + profundidad + " Metros");
         System.out.println("Deseas extraer recursos del planeta? (true/false)");
         boolean extraer = scanner.nextBoolean();
         if (extraer == true){
@@ -36,8 +41,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
 
             aux = (float)(0.5 * cantidad_recurso * (energiaConsumida/100)* (1 - jugador.getEficienciatraje()));
             if (jugador.getEnergia() <= aux){
-                System.out.println("El jugador no tiene suficiente energía para explorar más.");
-                System.out.println("Todo comienza de nuevo");
+                System.out.println("FCE: Oh no, insuficiente energía para explorar más.");
+                System.out.println("FCE: Nos veremos otra vez número" + jugador.getNumeroJugador());
                 scanner.close();
                 return false;
             }
@@ -84,7 +89,6 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
         } else if (tipo == 2) {
             this.setFloresDeSodio(cantidadDisponible - cantidadExtraer);
         }
-    
         scanner.close();
         return cantidadExtraer;
     }
