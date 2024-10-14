@@ -10,12 +10,14 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
     private boolean asentamiento;
     private int cristalesHidrogeno;
     private int floresDeSodio;
-    private int radio;
+    private int cantidadExtraer;
 
     public Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad) {
         super(radio, cristalesHidrogeno, floresDeSodio);
         this.radio = radio;
         this.profundidad = profundidad;
+        this.cristalesHidrogeno = cristalesHidrogeno;
+        this.floresDeSodio = floresDeSodio;
     }
 
     @Override
@@ -25,9 +27,9 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
         Scanner scanner = new Scanner(System.in);
         float energiaConsumida = (float)(0.002 * Math.pow(profundidad, 2));
         System.out.println("Visitando planeta Oceánico con profundidad de: " + profundidad + " Metros");
-        System.out.println("Deseas extraer recursos del planeta? (true/false)");
-        boolean extraer = scanner.nextBoolean();
-        if (extraer == true){
+        System.out.println("Deseas extraer recursos del planeta? 1 para si, 2 para no");
+        int extraer = scanner.nextInt();
+        if (extraer == 1){
             System.out.println("Que recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
             tipo_recurso = scanner.nextInt();
             cantidad_recurso = extraerRecursos(tipo_recurso);
@@ -62,8 +64,6 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
     @Override
     public int extraerRecursos(int tipo) {
         int cantidadDisponible = 0;
-        int cantidadExtraer = 0;
-        Scanner scanner = new Scanner(System.in);
 
         if (tipo == 1) {
             cantidadDisponible = this.getCristalesHidrogeno();
@@ -71,25 +71,13 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
             cantidadDisponible = this.getFloresDeSodio();
         } else {
             System.out.println("FCE: Tipo de recurso inválido.");
-            scanner.close();
             return 0;
         }
+        return cantidadDisponible - cantidadExtraer;  // Retorna los recursos disponibles para que el main lo maneje
+    }
 
-        System.out.println("FCE: ¿Cuánta cantidad deseas extraer? (Disponible: " + cantidadDisponible + ")");
-        cantidadExtraer = scanner.nextInt();
-
-        if (cantidadExtraer > cantidadDisponible) {
-            System.out.println("FCE: No hay suficiente recurso disponible. Solo hay " + cantidadDisponible + " unidades.");
-            scanner.close();
-            return 0;
-        }
-
-        if (tipo == 1) {
-            this.setCristalesHidrogeno(cantidadDisponible - cantidadExtraer);
-        } else if (tipo == 2) {
-            this.setFloresDeSodio(cantidadDisponible - cantidadExtraer);
-        }
-        scanner.close();
+    public int setCantidadExtraer(int cantidadExtraer) {
+        this.cantidadExtraer = cantidadExtraer;
         return cantidadExtraer;
     }
     
@@ -99,6 +87,12 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
     
     public int getFloresDeSodio(){
         return floresDeSodio;
+    }
+    
+    @Override
+    public boolean salir(){
+        System.out.println("Saliendo del planeta Oceánico...");
+        return true;
     }
 
 

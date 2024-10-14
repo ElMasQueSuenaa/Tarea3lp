@@ -9,14 +9,8 @@ public class CentroGalactico extends Planeta {
 
     @Override
     public boolean visitar(Jugador jugador) {
-        if (Nave.getEficienciaCombustible() > 0.5) {
-            System.out.println("El jugador ha llegado al Centro Galáctico, el final de su travesía.");
-            System.out.println("El lugar es hostil, con campos gravitatorios extremos y fenómenos estelares.");
-            return true;
-        } else {
-            System.out.println("La nave no es lo suficientemente eficiente para alcanzar el Centro Galáctico.");
-            return false;
-        }
+        System.out.println("El jugador ha llegado al Centro Galáctico.");
+        return true;
     }
     
     public int calcularConsumoEnergia() {
@@ -28,5 +22,11 @@ public class CentroGalactico extends Planeta {
         System.out.println("El Centro Galáctico no tiene recursos para extraer, no tiene nada, solo nosotros y el tiempo.");
         System.out.println("Que es el tiempo sin que sea ciclico, que es el tiempo sin nosotros.");
         return 0;
+    }
+
+    @Override
+    public boolean salir() {
+        System.out.println("El jugador ha salido del Centro Galáctico.");
+        return true;
     }
 }

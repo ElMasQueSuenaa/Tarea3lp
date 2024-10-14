@@ -6,10 +6,16 @@ import Interactuable.*;
 public class Volcanico extends Planeta {
     private int temperatura;
     private int platino;
+    private int cristalesHidrogeno;
+    private int floresDeSodio;
+    private int cantidadExtraer;
+
     public Volcanico(int radio, int cristalesHidrogeno, int floresDeSodio, int temperatura, int platino) {
         super(radio, cristalesHidrogeno, floresDeSodio);
         this.temperatura = temperatura;
         this.platino = platino;
+        this.cristalesHidrogeno = cristalesHidrogeno;
+        this.floresDeSodio = floresDeSodio;
     }
     
     @Override
@@ -19,10 +25,10 @@ public class Volcanico extends Planeta {
         Scanner scanner = new Scanner(System.in);
         float energiaConsumida = (float)(0.08 * temperatura);  // Consumo de energía 
         System.out.println("Visitando planeta Volcánico con temperatura de: " + temperatura + "°C");
-        System.out.println("Deseas extraer recursos del planeta? (true/false)");
-        boolean extraer = scanner.nextBoolean();
-        if (extraer == true){
-            System.out.println("Que recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para platino");
+        System.out.println("Deseas extraer recursos del planeta? 1 para si, 2 para no");
+        int extraer = scanner.nextInt();
+        if (extraer == 1){
+            System.out.println("Que recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para Platino");
             tipo_recurso = scanner.nextInt();
             cantidad_recurso = extraerRecursos(tipo_recurso);
 
@@ -55,43 +61,30 @@ public class Volcanico extends Planeta {
             return true;
         }
     }
+
     @Override
     public int extraerRecursos(int tipo) {
         int cantidadDisponible = 0;
-        int cantidadExtraer = 0;
-        Scanner scanner = new Scanner(System.in);
 
         if (tipo == 1) {
             cantidadDisponible = this.getCristalesHidrogeno();
         } else if (tipo == 2) {
             cantidadDisponible = this.getFloresDeSodio();
-        } else if (tipo == 3) {
-            cantidadDisponible = this.getPlatino();
         } else {
             System.out.println("FCE: Tipo de recurso inválido.");
-            scanner.close();
             return 0;
         }
+        return cantidadDisponible - cantidadExtraer;  // Retorna los recursos disponibles para que el main lo maneje
+    }
 
-        System.out.println("FCE: ¿Cuánta cantidad deseas extraer? (Disponible: " + cantidadDisponible + ")");
-        cantidadExtraer = scanner.nextInt();
+    public void setCantidadExtraer(int cantidadExtraer) {
+        this.cantidadExtraer = cantidadExtraer;
+    }
 
-        if (cantidadExtraer > cantidadDisponible) {
-            System.out.println("FCE: No hay suficiente recurso disponible. Solo hay " + cantidadDisponible + " unidades.");
-            scanner.close();
-            return 0;
-        }
-
-        if (tipo == 1) {
-            this.setCristalesHidrogeno(cantidadDisponible - cantidadExtraer);
-        } else if (tipo == 2) {
-            this.setFloresDeSodio(cantidadDisponible - cantidadExtraer);
-        } else if (tipo == 3) {
-            this.setPlatino(cantidadDisponible - cantidadExtraer);
-        }
-    
-        scanner.close();
-        return cantidadExtraer;
+    @Override
+    public boolean salir(){
+        System.out.println("Saliendo del planeta...");
+        return true;
     }
 
 

@@ -48,4 +48,6 @@ public abstract class Planeta {
     public void setFloresDeSodio(int floresDeSodio) {
         this.floresDeSodio = floresDeSodio;
     }
+
+    public abstract boolean salir();
 }

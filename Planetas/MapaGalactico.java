@@ -23,7 +23,6 @@ public class MapaGalactico {
         while (planetas.size() < numPlanetas) {
             Planeta nuevoPlaneta = generadorPlaneta();  
             planetas.add(nuevoPlaneta);                 
-            System.out.println("Generado: " + nuevoPlaneta); //Para depurar
         }
     }
 

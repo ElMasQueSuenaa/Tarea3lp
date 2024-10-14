@@ -1,14 +1,10 @@
-import Planetas.Planeta;
 import Planetas.Helado;
 import Planetas.MapaGalactico;
-import Planetas.CentroGalactico;
 import Planetas.Volcanico;
 import Planetas.Radiactivo;
 import Planetas.Oceanico;
-import Interfaz.tieneAsentamientos;
 
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 import Interactuable.Jugador;
 import Interactuable.Nave;
@@ -20,8 +16,11 @@ public class NoJavaSky {
         Nave nave = new Nave();
         Scanner scanner = new Scanner(System.in);
         boolean indiceDeReiniciarJuego = false;
-        boolean posibleAsentamiento = false;
-
+        int tipo_recurso, cantidad_recurso, extraer, recargarInventario, salir = 0;
+        //PONER QUE SE GASTE ENERGIA NO SE TE OLVIDE
+        //APLICAR PLANETA SALIR
+        //HACER EL FINAL DEL JUEGO
+        //HACER LA FUNCION DEL PUTO SALTO EN LA WEÁ DE NAVE Q PAJA CTM
         while (true) {
             if (indiceDeReiniciarJuego) {
                 System.out.println("FCE: Has perdido. Reiniciando desde el principio...");
@@ -36,48 +35,147 @@ public class NoJavaSky {
             String tipoPlaneta = mg.getTipoPlanetaActual();
             System.out.println("FCE: Hola intento número " + jugador.getNumeroJugador());
             System.out.println("FCE: Tu nave está lista para despegar.");
-            System.out.println("FCE: Te encuentras en el planeta 0.");
-            System.out.println("FCE: Tipo de planeta actual: " + tipoPlaneta);
+            System.out.println("FCE: Te encuentras en el planeta " + mg.getPlanetaActual().getClass().getSimpleName());
             System.out.println("FCE: ¿Deseas visitar el planeta? (1 = sí, 0 = no)");
+            int visitar = scanner.nextInt();
 
-            int visitar = -1;  
-            try {
-                if (scanner.hasNextInt()) {
-                    visitar = scanner.nextInt();
-                    scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
-                } else {
-                    throw new InputMismatchException();
-                }
-
-                if (visitar != 0 && visitar != 1) {
-                    throw new InputMismatchException();
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada no válida. Se asumirá que no deseas visitar el planeta.");
-                scanner.nextLine();  // Limpiar la entrada inválida
-                continue;  // Volver a pedir la entrada
-            }
-
-            if (visitar == 1) {  
+            if (visitar == 1) {
                 switch (tipoPlaneta) {
                     case "Helado":
                         Helado planetaHelado = (Helado) mg.getPlanetaActual();
-                        indiceDeReiniciarJuego = !planetaHelado.visitar(jugador); 
-                        posibleAsentamiento = true;
+                        planetaHelado.visitar(jugador);
+                        while(salir == 0){
+                            System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                            extraer = scanner.nextInt();
+                            if (extraer == 1) {
+                                System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaHelado.setCantidadExtraer(extraer);
+                                if (tipo_recurso == 1) {
+                                    recargarInventario = planetaHelado.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarCristales(recargarInventario);
+                                } else if (tipo_recurso == 2) {
+                                    recargarInventario = planetaHelado.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarFlores(recargarInventario);
+                                }
+                            }
+                            if(planetaHelado.getAsentamiento()){
+                                System.out.println("FCE: ¿Deseas explorar asentamientos? (1 = sí, 0 = no)");
+                                int explorarAsentamientos = scanner.nextInt();
+                                if (explorarAsentamientos == 1) {
+                                    planetaHelado.visitarAsentamientos(jugador);
+                                }
+                            }
+                            System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
+                            salir = scanner.nextInt();
+                            if(salir == 1){
+                                
+                                break;
+                            }
+                        }
                         break;
+
                     case "Radiactivo":
                         Radiactivo planetaRadiactivo = (Radiactivo) mg.getPlanetaActual();
-                        indiceDeReiniciarJuego = !planetaRadiactivo.visitar(jugador);
+                        planetaRadiactivo.visitar(jugador);
+                        System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                        extraer = scanner.nextInt();
+                        while(salir == 0){
+                            System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                            extraer = scanner.nextInt();
+                            if (extraer == 1) {
+                                System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para Uranio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaRadiactivo.setCantidadExtraer(extraer);
+                                if (tipo_recurso == 1) {
+                                    recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarCristales(recargarInventario);
+                                } else if (tipo_recurso == 2) {
+                                    recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarFlores(recargarInventario);
+                                } else if (tipo_recurso == 3) {
+                                    recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarUranio(recargarInventario);
+                                }
+                            }
+                            System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
+                            salir = scanner.nextInt();
+                            if(salir == 1){
+                                break;
+                            }
+                        }
                         break;
+
                     case "Oceanico":
                         Oceanico planetaOceanico = (Oceanico) mg.getPlanetaActual();
-                        indiceDeReiniciarJuego = !planetaOceanico.visitar(jugador);
-                        posibleAsentamiento = true;
+                        planetaOceanico.visitar(jugador);
+                        System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                        extraer = scanner.nextInt();
+                        while(salir == 0){
+                            System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                            extraer = scanner.nextInt();
+                            if (extraer == 1) {
+                                System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaOceanico.setCantidadExtraer(extraer);
+                                if (tipo_recurso == 1) {
+                                    recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarCristales(recargarInventario);
+                                } else if (tipo_recurso == 2) {
+                                    recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarFlores(recargarInventario);
+                                } else if (tipo_recurso == 3) {
+                                    recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarUranio(recargarInventario);
+                                }
+                            }
+                            System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
+                            salir = scanner.nextInt();
+                            if(salir == 1){
+                                break;
+                            }
+                        }
                         break;
+
                     case "Volcanico":
                         Volcanico planetaVolcanico = (Volcanico) mg.getPlanetaActual();
-                        indiceDeReiniciarJuego = !planetaVolcanico.visitar(jugador);
+                        planetaVolcanico.visitar(jugador);
+                        System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                        extraer = scanner.nextInt();
+                        while(salir == 0){
+                            System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
+                            extraer = scanner.nextInt();
+                            if (extraer == 1) {
+                                System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para Uranio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaVolcanico.setCantidadExtraer(extraer);
+                                if (tipo_recurso == 1) {
+                                    recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarCristales(recargarInventario);
+                                } else if (tipo_recurso == 2) {
+                                    recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarFlores(recargarInventario);
+                                } else if (tipo_recurso == 3) {
+                                    recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
+                                    jugador.recolectarUranio(recargarInventario);
+                                }
+                            }
+                            System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
+                            salir = scanner.nextInt();
+                            if(salir == 1){
+                                break;
+                            }
+                        }
                         break;
+
                     default:
                         System.out.println("FCE: Tipo de planeta no reconocido.");
                         break;
@@ -85,64 +183,40 @@ public class NoJavaSky {
             } else {
                 System.out.println("FCE: Volviendo a la órbita...");
             }
-
-            if (indiceDeReiniciarJuego) {
-                continue; 
+            System.out.println("FCE: En la orbita del planeta");
+            System.out.println("FCE: ¿Deseas recargar tu traje? (1 = sí, 0 = no)");
+            int recargar = scanner.nextInt();
+            if (recargar == 1) {
+                System.out.println("FCE: Quieres ver las flores de sodio en tu inventario? (1 = sí, 0 = no)");
+                int verInventario = scanner.nextInt();
+                if (verInventario == 1) {
+                    System.out.println("FCE: Flores de sodio en tu inventario: " + jugador.getFloresDeSodio());
+                }
+                System.out.println("FCE: Cuanta cantidad deseas recargar? Para este se usan las flores de sodio");
+                int cantRecarga = scanner.nextInt();
+                jugador.recargarEnergiaProteccion(cantRecarga);
+                System.out.println("FCE: Cantidad de energía actual: " + jugador.getEnergia());
             }
-
-            if (posibleAsentamiento) {
-                System.out.println("FCE: Puede ser que haya un asentamiento en este planeta, ¿deseas explorar más? (1 = sí, 0 = no)");
-
-                int aux = -1;
-                try {
-                    if (scanner.hasNextInt()) {
-                        aux = scanner.nextInt();
-                        scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
-                    } else {
-                        throw new InputMismatchException();
-                    }
-
-                    if (aux != 0 && aux != 1) {
-                        throw new InputMismatchException();
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Entrada no válida. Por favor, ingresa '0' o '1'.");
-                    scanner.nextLine();  // Limpiar la entrada inválida
-                    continue;
-                }
-
-                if (aux == 1) {  
-                    switch (tipoPlaneta) {
-                        case "Helado":
-                            Helado planetaHelado = (Helado) mg.getPlanetaActual();
-                            planetaHelado.visitarAsentamientos(jugador);
-                            break;
-                        case "Oceanico":
-                            Oceanico planetaOceanico = (Oceanico) mg.getPlanetaActual();
-                            planetaOceanico.visitarAsentamientos(jugador);
-                            break;
-                        default:
-                            System.out.println("Tipo de planeta no soportado para asentamientos.");
-                            break;
-                    }
-                }
+            System.out.println("FCE: ¿Deseas recargar tu nave? (1 = sí, 0 = no)");
+            int recargarNave = scanner.nextInt();
+            if (recargarNave == 1) {
+                System.out.println("FCE: Cuanta cantidad deseas recargar? Para este se usan los cristales de hidrógeno");
+                int cantRecargaNave = scanner.nextInt();
+                nave.recargarPropulsores(cantRecargaNave);
+                System.out.println("FCE: Cantidad de combustible actual: " + nave.getUnidadesCombustible());
             }
 
             System.out.println("FCE: ¿A qué planeta quieres ir? (ingresa el número del planeta)");
-            int planeta = -1;
-            try {
-                if (scanner.hasNextInt()) {
-                    planeta = scanner.nextInt();
-                    scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
-                } else {
-                    throw new InputMismatchException();
+            int planeta = scanner.nextInt();
+            while(true){
+                if(nave.calcularConsumo(planeta) > nave.getUnidadesCombustible()){
+                    System.out.println("FCE: No tienes suficiente combustible para llegar a ese planeta.");
+                    System.out.println("FCE: Prueba con otro planeta.");
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada no válida. Debes ingresar un número válido.");
-                scanner.nextLine();  // Limpiar la entrada inválida
-                continue;  // Volver a pedir la entrada
+                else{
+                    break;
+                }
             }
-
             mg.generarHastaPlaneta(planeta);
             System.out.println("FCE: Preparando salto...");
             nave.realizarSalto(planeta);
@@ -153,8 +227,7 @@ public class NoJavaSky {
                 break;
             }
 
-            tipoPlaneta = mg.getTipoPlanetaActual();
-            System.out.println("FCE: Has llegado al planeta " + planeta + ", tipo de planeta: " + tipoPlaneta);
+            System.out.println("FCE: Has llegado al planeta " + planeta + ", tipo de planeta: " + mg.getTipoPlanetaActual());
         }
 
         scanner.close();
