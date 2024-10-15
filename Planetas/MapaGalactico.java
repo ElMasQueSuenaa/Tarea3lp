@@ -20,11 +20,19 @@ public class MapaGalactico {
     }
 
     public void generarHastaPlaneta(int numPlanetas) {
-        while (planetas.size() < numPlanetas) {
+        while (planetas.size() <= numPlanetas) {
             Planeta nuevoPlaneta = generadorPlaneta();  
             planetas.add(nuevoPlaneta);     
             System.out.println("Planeta " + nuevoPlaneta.getClass().getSimpleName() + " creado.");            
         }
+    }
+
+    public int getPosicionActual() {
+        return posicionActual;
+    }
+
+    public void setPosicionActual(int posicionActual) {
+        this.posicionActual = posicionActual;
     }
 
     private Planeta generadorPlaneta() {
@@ -97,7 +105,7 @@ public class MapaGalactico {
 
     public String getTipoPlanetaActual() {
         if (posicionActual >= 0 && posicionActual < planetas.size()) {
-            Planeta planetaActual = planetas.get(posicionActual);
+            Planeta planetaActual = planetas.get(posicionActual);  // Obtiene el planeta en la posición actual
             return planetaActual.getClass().getSimpleName();  // Retorna el nombre simple de la clase del planeta
         } else {
             return "No hay planetas en esta posición.";

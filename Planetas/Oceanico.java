@@ -93,10 +93,10 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         System.out.println("Probablemente sea el nombre del comerciante");
         System.out.println("Entras a la tienda, hay un tipo de tiburón humanoide y en la mesa hay 4 ofertas");
         System.out.println("El comerciante te mira a los ojos y apunta a las ofertas");
-        System.out.println("1. Mejora de eficiencia de traje: 10.0% de eficiencia por 10000 unidades de Platino");
-        System.out.println("2. Comprar Cristales de Hidrógeno: 1000 cristales de hidrógeno por 3000 unidades de Platino");
-        System.out.println("3. Comprar Flores de Sodio: 2000 flores de sodio por 50 unidades de Platino"); 
-        System.out.println("4. Comprar Uranio: 80 unidades de Uranio por 40000 unidades de Platino");
+        System.out.println("1. Mejora de eficiencia de traje: 10.0% de eficiencia por 1000 unidades de Platino");
+        System.out.println("2. Comprar Cristales de Hidrógeno: 1000 cristales de hidrógeno por 25 unidades de Platino");
+        System.out.println("3. Comprar Flores de Sodio: 200 flores de sodio por 50 unidades de Platino"); 
+        System.out.println("4. Comprar Uranio: 80 unidades de Uranio por 40 unidades de Platino");
         System.out.println("El comerciante te mira esperando tu elección");
     }
 
@@ -107,15 +107,15 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
 
         switch (opcion) {
             case 1:
-                precio = 10000;
+                precio = 1000;
                 mejora = 10.0f;
                 System.out.println("Eficiencia de nave " + mejora + " unidades por " + precio + " unidades de Platino.");
                 jugador.tradePlatino(precio);
-                nave.setEficienciaCombustible(nave.getEficienciaCombustible() + mejora);
+                jugador.setEficiencia(jugador.getEficienciatraje() + mejora);
                 break;
 
             case 2:
-                precio = 3000;
+                precio = 25;
                 cantidad = 1000;
                 System.out.println("Has comprado " + cantidad + " Cristales de Hidrógeno por " + precio + " unidades de Platino.");
                 jugador.tradePlatino(precio);
@@ -123,7 +123,7 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
                 break;
 
             case 3:
-                precio = 2000;
+                precio = 200;
                 cantidad = 50;
                 System.out.println("Has comprado " + cantidad + " Flores de Sodio por " + precio + " unidades.");
                 jugador.tradePlatino(precio);
@@ -131,7 +131,7 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
                 break;
 
             case 4:
-                precio = 40000;
+                precio = 40;
                 cantidad = 80;
                 System.out.println("Has comprado " + cantidad + " unidades de Uranio por " + precio + " unidades.");
                 jugador.tradePlatino(precio);

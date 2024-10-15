@@ -71,21 +71,21 @@ public class Helado extends Planeta implements tieneAsentamientos {
 
     @Override
     public void visitarAsentamientos(Jugador jugador) {
-        System.out.println("Visitando asentamiento en planeta Oceánico");
-        System.out.println("Hay entidades parecidas a humanos, pero con branquias en el cuello");
-        System.out.println("Hay que adaptarse para sobrevivir");
-        System.out.println("Debería haber un comerciante en alguna ciudad sobre el agua");
-        System.out.println("Decides seguir un puente de coral que te lleva a una cueva");
-        System.out.println("Hay que protegerse del sol, piel seca no es buena señal");
-        System.out.println("Al final del puente, encuentras una criatura con una tienda de campaña");
-        System.out.println("Ves un cartel que dice '╮ɟ⌈∀⊲ə╭'");
-        System.out.println("Probablemente sea el nombre del comerciante");
-        System.out.println("Entras a la tienda, hay un tipo de tiburón humanoide y en la mesa hay 4 ofertas");
-        System.out.println("El comerciante te mira a los ojos y apunta a las ofertas");
-        System.out.println("1. Mejora de eficiencia de traje: 10.0% de eficiencia por 10000 unidades de Platino");
-        System.out.println("2. Comprar Cristales de Hidrógeno: 1000 cristales de hidrógeno por 3000 unidades de Platino");
-        System.out.println("3. Comprar Flores de Sodio: 2000 flores de sodio por 50 unidades de Platino"); 
-        System.out.println("4. Comprar Uranio: 80 unidades de Uranio por 40000 unidades de Platino");
+        System.out.println("Visitando asentamiento en planeta Helado");
+        System.out.println("Hay personas con pieles de animales que no conoces, todos te miran por vestir de distinta manera");
+        System.out.println("Condiciones dificiles, generan gente dificil");
+        System.out.println("Debería haber un comerciante en alguna cueva");
+        System.out.println("La gente de este lugar debería tener las comunidades bajo tierra, para protegerse de las tormentas de hielo");
+        System.out.println("Despues de recorrer el planeta, encuentras un cartel en un idioma que no entiendes");
+        System.out.println("Decides seguir el camino que te lleva a una cueva");
+        System.out.println("Dentro de la cueva hay una comunidad de seres nativos del planeta");
+        System.out.println("Te ofrecen intercambiar recursos, pero no entiendes su idioma");
+        System.out.println("Menos mal el trueque es un lenguaje universal");
+        System.out.println("Te llevan a un tipo de taberna, donde el dueño del lugar te muestra 5 distintas ofertas");
+        System.out.println("1. Mejora de eficiencia de nave: 15.0% de eficiencia por 1050 unidades de Platino");
+        System.out.println("2. Mejora de eficiencia de traje: 10.0% de eficiencia por 850 unidades de Cristales de Hidrógeno");
+        System.out.println("3. Comprar Flores de Sodio: 200 flores de sodio por 50 unidades de Platino"); 
+        System.out.println("4. Comprar Uranio: 80 unidades de Uranio por 40 unidades de Platino");
         System.out.println("El comerciante te mira esperando tu elección");
     }
 
@@ -96,23 +96,23 @@ public class Helado extends Planeta implements tieneAsentamientos {
 
         switch (opcion) {
             case 1:
-                precio = 10000;
-                mejora = 10.0f;
-                System.out.println("Eficiencia de nave " + mejora + " unidades por " + precio + " unidades de Platino.");
+                precio = 1050;
+                mejora = 15.0f;
+                System.out.println("Eficiencia de nave " + mejora + "% por " + precio + " unidades de Platino.");
                 jugador.tradePlatino(precio);
                 nave.setEficienciaCombustible(nave.getEficienciaCombustible() + mejora);
                 break;
 
             case 2:
-                precio = 3000;
-                cantidad = 1000;
-                System.out.println("Has comprado " + cantidad + " Cristales de Hidrógeno por " + precio + " unidades de Platino.");
+                precio = 850;
+                mejora = 10.0f;
+                System.out.println("Eficiencia de traje " + mejora + "% por " + precio + " unidades de Platino.");
                 jugador.tradePlatino(precio);
                 jugador.recolectarCristales(cantidad);
                 break;
 
             case 3:
-                precio = 2000;
+                precio = 200;
                 cantidad = 50;
                 System.out.println("Has comprado " + cantidad + " Flores de Sodio por " + precio + " unidades.");
                 jugador.tradePlatino(precio);
@@ -120,7 +120,7 @@ public class Helado extends Planeta implements tieneAsentamientos {
                 break;
 
             case 4:
-                precio = 40000;
+                precio = 40;
                 cantidad = 80;
                 System.out.println("Has comprado " + cantidad + " unidades de Uranio por " + precio + " unidades.");
                 jugador.tradePlatino(precio);

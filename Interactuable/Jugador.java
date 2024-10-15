@@ -117,21 +117,15 @@ public class Jugador {
     }
 
     public void recargarEnergiaProteccion(int sodio){
-        if(this.unidadesEnergiaProteccion + sodio > 100.0f && this.floresRecolectada > 0){
-            this.unidadesEnergiaProteccion = 100.0f;
-            this.floresRecolectada = (int)(this.unidadesEnergiaProteccion - sodio);
-            System.out.println("Traje recargado al 100%");  
-            System.out.println("Flores de sodio restantes: " + this.floresRecolectada);
+        float unidadesRecargadas = 0.65f * sodio * (1 + eficienciaEnergiaProteccion);
+        if (sodio > 0) {
+            System.out.println("FCE: Se ha recargado el tanque de combustible.");
+            setEnergia(unidadesRecargadas);
+            return;
         }
-        else if(this.unidadesEnergiaProteccion + sodio <= 100.0f && this.floresRecolectada > 0){
-            this.unidadesEnergiaProteccion += sodio;
-            this.floresRecolectada = (int)(this.unidadesEnergiaProteccion - sodio);
-            System.out.println("Traje recargado al " + this.unidadesEnergiaProteccion + "%");
-            System.out.println("Flores de sodio restantes: " + this.floresRecolectada);
+        else {
+            System.out.println("FCE: No se puede recargar combustible con una cantidad negativa o nula de Sodio.");
         }
-        else{
-            System.out.println("No tienes suficientes flores de sodio para recargar el traje");
-        }	
     }
 
     public int getNumeroJugador(){

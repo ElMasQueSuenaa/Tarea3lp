@@ -18,18 +18,12 @@ public class NoJavaSky {
         Scanner scanner = new Scanner(System.in);
         boolean indiceDeReiniciarJuego = false;
         int tipo_recurso, cantidad_recurso, extraer, recargarInventario, salir = 0;
-        int cantidadGastarEnergia = 0;
         int seguirComprando = 1;
-        //PONER QUE SE GASTE ENERGIA NO SE TE OLVIDE
-        //APLICAR PLANETA SALIR
-        //HACER EL FINAL DEL JUEGO
-        //HACER LA FUNCION DEL PUTO SALTO EN LA WEÁ DE NAVE Q PAJA CTM
+        int visitar;
         String tipoPlaneta = mg.getTipoPlanetaActual();
         System.out.println("FCE: Hola intento número " + jugador.getNumeroJugador());
         System.out.println("FCE: Tu nave está lista para despegar.");
         System.out.println("FCE: Te encuentras en el planeta " + mg.getPlanetaActual().getClass().getSimpleName());
-        System.out.println("FCE: ¿Deseas visitar el planeta? (1 = sí, 0 = no)");
-        int visitar = scanner.nextInt();
         while (true) {
             if (indiceDeReiniciarJuego) {
                 System.out.println("FCE: Has perdido. Alguna vez coincidiremos de nuevo...");
@@ -40,6 +34,16 @@ public class NoJavaSky {
                 mg.setPosicion(0); 
                 indiceDeReiniciarJuego = false;
             }
+            System.out.println(mg.getPosicionActual());
+            tipoPlaneta = mg.getTipoPlanetaActual();
+            if (tipoPlaneta != null) {
+                // Aquí ingresas al planeta y puedes ejecutar la lógica correspondiente
+                System.out.println(tipoPlaneta);
+            } else {
+                System.out.println("No puedes ingresar a este planeta.");
+            }
+            System.out.println("FCE: ¿Deseas visitar el planeta? (1 = sí, 0 = no)");
+            visitar = scanner.nextInt();
             if (visitar == 1) {
                 switch (tipoPlaneta) {
                     case "Helado":
@@ -56,24 +60,16 @@ public class NoJavaSky {
                                 cantidad_recurso = scanner.nextInt();
                                 planetaHelado.setCantidadExtraer(extraer);
                                 System.out.println("FCE: Según la cantidad de recursos que deseas extraer, se gastará energía.");
-                                System.out.println("FCE: Quieres ver tu energia actual? (1 = sí, 0 = no)");
-
-                                int verEnergia = scanner.nextInt();
-                                if (verEnergia == 1) {
-                                    System.out.println("FCE: Energía actual: " + jugador.getEnergia());
-                                }
-
                                 if (jugador.CorroborarGastoEnergiaTraje(cantidad_recurso)) {
                                     if (tipo_recurso == 1) {
                                         recargarInventario = planetaHelado.extraerRecursos(tipo_recurso);
                                         jugador.recolectarCristales(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     } else if (tipo_recurso == 2) {
                                         recargarInventario = planetaHelado.extraerRecursos(tipo_recurso);
                                         jugador.recolectarFlores(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     }
                                     jugador.gastarEnergiaTraje(cantidad_recurso);
+                                    System.out.println("FCE: Energia despues de extraer: " + jugador.getEnergia());
                                     System.out.println("FCE: ¿Deseas seguir extrayendo recursos? (1 = sí, 0 = no)");
                                     extraer = scanner.nextInt();
                                 } 
@@ -131,15 +127,12 @@ public class NoJavaSky {
                                     if (tipo_recurso == 1) {
                                         recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
                                         jugador.recolectarCristales(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     } else if (tipo_recurso == 2) {
                                         recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
                                         jugador.recolectarFlores(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     } else if (tipo_recurso == 3) {
                                         recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
                                         jugador.recolectarUranio(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     }
 
                                     jugador.gastarEnergiaTraje(cantidad_recurso);
@@ -187,11 +180,9 @@ public class NoJavaSky {
                                     if (tipo_recurso == 1) {
                                         recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
                                         jugador.recolectarCristales(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     } else if (tipo_recurso == 2) {
                                         recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
                                         jugador.recolectarFlores(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     }
                                     jugador.gastarEnergiaTraje(cantidad_recurso);
                                     System.out.println("FCE: ¿Deseas seguir extrayendo recursos? (1 = sí, 0 = no)");
@@ -253,11 +244,9 @@ public class NoJavaSky {
                                     if (tipo_recurso == 1) {
                                         recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
                                         jugador.recolectarCristales(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     } else if (tipo_recurso == 2) {
                                         recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
                                         jugador.recolectarFlores(recargarInventario);
-                                        cantidadGastarEnergia += cantidad_recurso;
                                     }
                                     jugador.gastarEnergiaTraje(cantidad_recurso);
                                     System.out.println("FCE: ¿Deseas seguir extrayendo recursos? (1 = sí, 0 = no)");
@@ -332,26 +321,26 @@ public class NoJavaSky {
                         System.out.println("FCE: Cantidad de combustible actual: " + nave.getUnidadesCombustible());
                     }
 
-                    System.out.println("FCE: ¿A qué planeta quieres ir? (ingresa el número del planeta)");
+                    System.out.println("FCE: ¿A qué planeta quieres ir? (ingresa el tamaño del salto)");
                     int planeta = scanner.nextInt();
                     while (true) {
                         if (nave.calcularConsumo(planeta) > nave.getUnidadesCombustible()) {
-                        System.out.println("FCE: No tienes suficiente combustible para llegar a ese planeta.");
-                        System.out.println("FCE: Prueba con otro planeta.");
-                        } else {
+                            System.out.println("FCE: No tienes suficiente combustible para llegar a ese planeta.");
+                            System.out.println("FCE: Prueba con otro planeta.");
+                            planeta = scanner.nextInt();
+                        } 
+                        else{
                         break;
                         }
                     }
-                    mg.generarHastaPlaneta(planeta);
-                    System.out.println("FCE: Prepado salto...");
-                    nave.realizarSalto(planeta);
+                    nave.viajarPlaneta(mg, planeta, planeta);
                     if (nave.getUnidadesCombustible() <= 0) {
                         System.out.println("FCE: No tienes suficiente combustible para realizar el salto.");
                         System.out.println("FCE: Fin del juego.");
                         break;
                     }
 
-                    System.out.println("FCE: Has llegado al planeta " + planeta + ", tipo de planeta: " + mg.getTipoPlanetaActual());
+                    System.out.println("FCE: Has llegado a un planeta de tipo: " + mg.getTipoPlanetaActual());
                 }
         }
         scanner.close();

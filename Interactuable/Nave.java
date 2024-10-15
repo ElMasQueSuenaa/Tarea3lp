@@ -24,31 +24,24 @@ public class Nave {
     }
 
     public float calcularConsumo(int salto) {
-        if (salto > 0) {
-            float consumo = 0.75f * salto * salto * (1 - eficienciaCombustible);
+        float consumo = 0.75f * Math.abs(salto) * Math.abs(salto) * (1 - eficienciaCombustible);
             return consumo;
-        } else {
-            System.out.println("El tamaño del salto debe ser mayor que 0.");
-            return 0.0f;
-        }
     }
 
     public boolean viajarPlaneta(MapaGalactico MG, int direccion, int tamanoSalto){
+        MG.generarHastaPlaneta(Math.abs(tamanoSalto));
+        if(direccion < 0){
+            MG.setPosicionActual(MG.getPosicionActual() - Math.abs(tamanoSalto));
+        }
+        else{
+            MG.setPosicionActual(tamanoSalto);
+        }
+        float consumo = calcularConsumo(tamanoSalto);
+        this.unidadesCombustible -= consumo;
+
         return true;
     }
 
-    public boolean realizarSalto(int salto) {
-        float consumo = calcularConsumo(salto);
-        if (unidadesCombustible >= consumo) {
-            unidadesCombustible -= consumo;
-            System.out.println("Salto realizado de tamaño " + salto + ".");
-            System.out.println("Combustible restante: " + unidadesCombustible + " unidades.");
-            return true;
-        } else {
-            System.out.println("No hay suficiente combustible para realizar el salto.");
-            return false;
-        }
-    } 
 
     public float getUnidadesCombustible() {
         return unidadesCombustible;
