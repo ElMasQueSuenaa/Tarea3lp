@@ -1,3 +1,4 @@
+import Planetas.CentroGalactico;
 import Planetas.Helado;
 import Planetas.MapaGalactico;
 import Planetas.Volcanico;
@@ -111,46 +112,52 @@ public class NoJavaSky {
                     while (salir == 0) {
                         System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
                         extraer = scanner.nextInt();
-                        if (extraer == 1) {
-                        System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
-                        tipo_recurso = scanner.nextInt();
-                        System.out.println("¿Cuántas unidades deseas extraer?");
-                        cantidad_recurso = scanner.nextInt();
-                        planetaRadiactivo.setCantidadExtraer(extraer);
-                        System.out.println("FCE: Según la cantidad de recursos que deseas extraer, se gastará energía.");
-                        System.out.println("FCE: Quieres ver tu energia actual? (1 = sí, 0 = no)");
+                        while (extraer == 1) {
+                            if (extraer == 1) {
+                                System.out.println("FCE: ¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para Uranio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("FCE: ¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaRadiactivo.setCantidadExtraer(extraer);
+                                System.out.println("FCE: Según la cantidad de recursos que deseas extraer, se gastará energía.");
+                                System.out.println("FCE: Quieres ver tu energia actual? (1 = sí, 0 = no)");
 
-                        int verEnergia = scanner.nextInt();
-                        if (verEnergia == 1) {
-                            System.out.println("FCE: Energía actual: " + jugador.getEnergia());
-                        }
+                                int verEnergia = scanner.nextInt();
+                                if (verEnergia == 1) {
+                                    System.out.println("FCE: Energía actual: " + jugador.getEnergia());
+                                }
 
-                        if (jugador.CorroborarGastoEnergiaTraje(cantidad_recurso)) {
-                            if (tipo_recurso == 1) {
-                            recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
-                            jugador.recolectarCristales(recargarInventario);
-                            cantidadGastarEnergia += cantidad_recurso;
-                            } else if (tipo_recurso == 2) {
-                            recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
-                            jugador.recolectarFlores(recargarInventario);
-                            cantidadGastarEnergia += cantidad_recurso;
-                            } else if (tipo_recurso == 3) {
-                            recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
-                            jugador.recolectarUranio(recargarInventario);
-                            cantidadGastarEnergia += cantidad_recurso;
+                                if (jugador.CorroborarGastoEnergiaTraje(cantidad_recurso)) {
+                                    if (tipo_recurso == 1) {
+                                        recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarCristales(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    } else if (tipo_recurso == 2) {
+                                        recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarFlores(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    } else if (tipo_recurso == 3) {
+                                        recargarInventario = planetaRadiactivo.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarUranio(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    }
+
+                                    jugador.gastarEnergiaTraje(cantidad_recurso);
+                                    System.out.println("FCE: ¿Deseas seguir extrayendo recursos? (1 = sí, 0 = no)");
+                                    extraer = scanner.nextInt();
+                                } 
+                                else {
+                                    System.out.println("FCE: No tienes suficiente energía para extraer esa cantidad de recursos.");
+                                    System.out.println("FCE: Escoges extraer menos recursos? (1 = sí, 0 = no)");
+                                    extraer = scanner.nextInt();
+                                }
                             }
-
-                        } else {
-                            System.out.println("FCE: No tienes suficiente energía para extraer recursos.");
-                            indiceDeReiniciarJuego = true;
-                        }
-
                         }
                         System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
                         salir = scanner.nextInt();
                         if (salir == 1) {
-                        planetaRadiactivo.salir();
-                        break;
+                            planetaRadiactivo.salir();
+                            break;
                         }
                     }
                     break;
@@ -161,48 +168,60 @@ public class NoJavaSky {
                     while (salir == 0) {
                         System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
                         extraer = scanner.nextInt();
-                        if (extraer == 1) {
-                        System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
-                        tipo_recurso = scanner.nextInt();
-                        System.out.println("¿Cuántas unidades deseas extraer?");
-                        cantidad_recurso = scanner.nextInt();
-                        planetaOceanico.setCantidadExtraer(extraer);
-                        System.out.println("FCE: Según la cantidad de recursos que deseas extraer, se gastará energía.");
-                        System.out.println("FCE: Quieres ver tu energia actual? (1 = sí, 0 = no)");
+                        while (extraer == 1) {
+                            if (extraer == 1) {
+                                System.out.println("FCE: ¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("FCE: ¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaOceanico.setCantidadExtraer(extraer);
+                                System.out.println("FCE: Según la cantidad de recursos que deseas extraer, se gastará energía.");
+                                System.out.println("FCE: Quieres ver tu energia actual? (1 = sí, 0 = no)");
 
-                        int verEnergia = scanner.nextInt();
-                        if (verEnergia == 1) {
-                            System.out.println("FCE: Energía actual: " + jugador.getEnergia());
-                        }
+                                int verEnergia = scanner.nextInt();
+                                if (verEnergia == 1) {
+                                    System.out.println("FCE: Energía actual: " + jugador.getEnergia());
+                                }
 
-                        if (jugador.CorroborarGastoEnergiaTraje(cantidad_recurso)) {
-                            if (tipo_recurso == 1) {
-                            recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
-                            jugador.recolectarCristales(recargarInventario);
-                            cantidadGastarEnergia += cantidad_recurso;
-                            } else if (tipo_recurso == 2) {
-                            recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
-                            jugador.recolectarFlores(recargarInventario);
-                            cantidadGastarEnergia += cantidad_recurso;
+                                if (jugador.CorroborarGastoEnergiaTraje(cantidad_recurso)) {
+                                    if (tipo_recurso == 1) {
+                                        recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarCristales(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    } else if (tipo_recurso == 2) {
+                                        recargarInventario = planetaOceanico.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarFlores(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    }
+                                    jugador.gastarEnergiaTraje(cantidad_recurso);
+                                    System.out.println("FCE: ¿Deseas seguir extrayendo recursos? (1 = sí, 0 = no)");
+                                    extraer = scanner.nextInt();
+                                } 
+                                else {
+                                    System.out.println("FCE: No tienes suficiente energía para extraer esa cantidad de recursos.");
+                                    System.out.println("FCE: Escoges extraer menos recursos? (1 = sí, 0 = no)");
+                                    extraer = scanner.nextInt();
+                                }
                             }
-                        } else {
-                            System.out.println("FCE: No tienes suficiente energía para extraer recursos.");
-                            indiceDeReiniciarJuego = true;
-                        }
-
                         }
                         if (planetaOceanico.getAsentamiento()) {
-                        System.out.println("FCE: ¿Deseas explorar asentamientos? (1 = sí, 0 = no)");
-                        int explorarAsentamientos = scanner.nextInt();
-                        if (explorarAsentamientos == 1) {
-                            planetaOceanico.visitarAsentamientos(jugador);
-                        }
+                            System.out.println("FCE: ¿Deseas explorar asentamientos? (1 = sí, 0 = no)");
+                            int explorarAsentamientos = scanner.nextInt();
+                            if (explorarAsentamientos == 1) {
+                                while (seguirComprando != 0) {
+                                    planetaOceanico.visitarAsentamientos(jugador);
+                                    int eleccion = scanner.nextInt();
+                                    planetaOceanico.asignarTrade(eleccion, jugador, nave);
+                                    System.out.println("FCE: ¿Deseas seguir comerciando? (1 = sí, 0 = no)");
+                                    seguirComprando = scanner.nextInt();
+                                }
+                            }
                         }
                         System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
                         salir = scanner.nextInt();
                         if (salir == 1) {
-                        planetaOceanico.salir();
-                        break;
+                            planetaOceanico.salir();
+                            break;
                         }
                     }
                     break;
@@ -215,33 +234,67 @@ public class NoJavaSky {
                     while (salir == 0) {
                         System.out.println("FCE: ¿Deseas extraer recursos del planeta? (1 = sí, 0 = no)");
                         extraer = scanner.nextInt();
-                        if (extraer == 1) {
-                        System.out.println("¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio, 3 para Uranio");
-                        tipo_recurso = scanner.nextInt();
-                        System.out.println("¿Cuántas unidades deseas extraer?");
-                        cantidad_recurso = scanner.nextInt();
-                        planetaVolcanico.setCantidadExtraer(extraer);
-                        if (tipo_recurso == 1) {
-                            recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
-                            jugador.recolectarCristales(recargarInventario);
-                        } else if (tipo_recurso == 2) {
-                            recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
-                            jugador.recolectarFlores(recargarInventario);
-                        } else if (tipo_recurso == 3) {
-                            recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
-                            jugador.recolectarUranio(recargarInventario);
-                        }
+                        while (extraer == 1) {
+                            if (extraer == 1) {
+                                System.out.println("FCE: ¿Qué recurso deseas extraer? 1 para Cristales de Hidrógeno, 2 para Flores de Sodio");
+                                tipo_recurso = scanner.nextInt();
+                                System.out.println("FCE: ¿Cuántas unidades deseas extraer?");
+                                cantidad_recurso = scanner.nextInt();
+                                planetaVolcanico.setCantidadExtraer(extraer);
+                                System.out.println("FCE: Según la cantidad de recursos que deseas extraer, se gastará energía.");
+                                System.out.println("FCE: Quieres ver tu energia actual? (1 = sí, 0 = no)");
+
+                                int verEnergia = scanner.nextInt();
+                                if (verEnergia == 1) {
+                                    System.out.println("FCE: Energía actual: " + jugador.getEnergia());
+                                }
+
+                                if (jugador.CorroborarGastoEnergiaTraje(cantidad_recurso)) {
+                                    if (tipo_recurso == 1) {
+                                        recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarCristales(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    } else if (tipo_recurso == 2) {
+                                        recargarInventario = planetaVolcanico.extraerRecursos(tipo_recurso);
+                                        jugador.recolectarFlores(recargarInventario);
+                                        cantidadGastarEnergia += cantidad_recurso;
+                                    }
+                                    jugador.gastarEnergiaTraje(cantidad_recurso);
+                                    System.out.println("FCE: ¿Deseas seguir extrayendo recursos? (1 = sí, 0 = no)");
+                                    extraer = scanner.nextInt();
+                                } 
+                                else {
+                                    System.out.println("FCE: No tienes suficiente energía para extraer esa cantidad de recursos.");
+                                    System.out.println("FCE: Escoges extraer menos recursos? (1 = sí, 0 = no)");
+                                    extraer = scanner.nextInt();
+                                }
+                            }
                         }
                         System.out.println("FCE: ¿Deseas salir del planeta? (1 = sí, 0 = no)");
                         salir = scanner.nextInt();
                         if (salir == 1) {
-                        break;
+                            planetaVolcanico.salir();
+                            break;
                         }
                     }
                     break;
 
                     case "CentroGalactico":
-                    System.out.println("FCE: Has llegado al centro galáctico.");
+                    CentroGalactico planetaCentroGalactico = (CentroGalactico) mg.getPlanetaActual();
+                    System.out.println("FCE: Se ha encontrado el centro galáctico.");
+                    System.out.println("FCE: Se necesita 50.0% de eficiencia para visitarlo.");
+                    if (jugador.getEficienciatraje() >= 0.5) {
+                        System.out.println("FCE: Quieres terminar tu viaje? (1 = sí, 0 = no)");
+                        int terminarViaje = scanner.nextInt();
+                        if (terminarViaje == 1) {
+                            planetaCentroGalactico.visitar(jugador);
+                            break;
+                        } 
+                    } 
+                    else {
+                        System.out.println("FCE: No tienes la eficiencia necesaria para visitar el centro galáctico.");
+                        break;
+                    }
 
                     default:
                         System.out.println("FCE: Tipo de planeta no reconocido.");
