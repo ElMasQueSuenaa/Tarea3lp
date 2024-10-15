@@ -22,7 +22,8 @@ public class MapaGalactico {
     public void generarHastaPlaneta(int numPlanetas) {
         while (planetas.size() < numPlanetas) {
             Planeta nuevoPlaneta = generadorPlaneta();  
-            planetas.add(nuevoPlaneta);                 
+            planetas.add(nuevoPlaneta);     
+            System.out.println("Planeta " + nuevoPlaneta.getClass().getSimpleName() + " creado.");            
         }
     }
 

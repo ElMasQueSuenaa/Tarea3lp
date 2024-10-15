@@ -101,7 +101,21 @@ public class Jugador {
 
     }
 
-    //crear recarga de traje
+    public boolean CorroborarGastoEnergiaTraje(int cantidad_recurso_sacados){
+        float aux = (float) (0.5 * cantidad_recurso_sacados * (this.unidadesEnergiaProteccion/100) * (1 - this.eficienciaEnergiaProteccion));
+        if(aux > this.unidadesEnergiaProteccion){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public void gastarEnergiaTraje(int cantidad_recurso_sacados){
+        float aux = (float) (0.5 * cantidad_recurso_sacados * (this.unidadesEnergiaProteccion/100) * (1 - this.eficienciaEnergiaProteccion));
+        this.unidadesEnergiaProteccion -= aux;
+    }
+
     public void recargarEnergiaProteccion(int sodio){
         if(this.unidadesEnergiaProteccion + sodio > 100.0f && this.floresRecolectada > 0){
             this.unidadesEnergiaProteccion = 100.0f;

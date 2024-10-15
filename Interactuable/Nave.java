@@ -4,18 +4,21 @@ import Planetas.MapaGalactico;
 
 public class Nave {
     private float unidadesCombustible;           
-    private float eficienciaCombustible;         
+    private float eficienciaCombustible;        
 
     public Nave() {
         this.unidadesCombustible = 100.0f;
-        this.eficienciaCombustible = 0.0f;       
+        this.eficienciaCombustible = 0.0f;    
     }
 
     public void recargarPropulsores(int hidrogeno) {
-        if (hidrogeno> 0) {
-            float unidadesRecargadas = 0.6f * hidrogeno * (1 + eficienciaCombustible);
-            unidadesCombustible += unidadesRecargadas;
-        } else {
+        float unidadesRecargadas = 0.6f * hidrogeno * (1 + eficienciaCombustible);
+        if (hidrogeno > 0) {
+            System.out.println("FCE: Se ha recargado el tanque de combustible.");
+            setUnidadesCombustible(unidadesRecargadas);
+            return;
+        }
+        else {
             System.out.println("No se puede recargar combustible con una cantidad negativa o nula de Hidrógeno.");
         }
     }
