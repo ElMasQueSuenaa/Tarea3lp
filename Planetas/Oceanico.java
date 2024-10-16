@@ -11,6 +11,16 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     private int floresDeSodio;
     private int cantidadExtraer;
 
+    ////////////////////
+    //Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad)
+    //radio: radio del planeta
+    //cristalesHidrogeno: cantidad de cristales de hidrogeno en el planeta
+    //floresDeSodio: cantidad de flores de sodio en el planeta
+    //profundidad: profundidad del planeta
+    //------------------
+    //Constructor de la clase Oceanico, asigna los valores de los atributos
+    ///////////////////
+
     public Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad) {
         super(radio, cristalesHidrogeno, floresDeSodio);
         this.radio = radio;
@@ -18,6 +28,13 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         this.cristalesHidrogeno = cristalesHidrogeno;
         this.floresDeSodio = floresDeSodio;
     }
+
+    ////////////////////
+    //visitar(Jugador jugador)
+    //jugador: jugador que visita el planeta
+    //------------------
+    //Método que permite al jugador visitar el planeta y conocer todos los recursos que posee y caracteristicas del planeta
+    ///////////////////
 
     @Override
     public boolean visitar(Jugador jugador) {
@@ -33,9 +50,23 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         return true;
     }
 
+    ////////////////////
+    //getAsentamiento()
+    //No recibe parámetros
+    //------------------
+    //Método que retorna el valor de la variable asentamiento
+    ///////////////////
+
     public boolean getAsentamiento() {
         return asentamiento;
     }
+
+    ////////////////////
+    //extraerRecursos(int tipo)
+    //tipo: tipo de recurso a extraer
+    //------------------
+    //Método que permite extraer recursos del planeta, recibe el tipo de recurso a extraer y retorna la cantidad de recursos disponibles
+    ///////////////////
 
     @Override
     public int extraerRecursos(int tipo) {

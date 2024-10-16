@@ -32,19 +32,16 @@ public class Radiactivo extends Planeta {
     //visitar(Jugador jugador)
     //jugador: jugador que visita el planeta
     //------------------
-    //Método que se encarga de mostrar un mensaje de visita al planeta, además de mostrar la radiación del planeta
-    //retorna siempre true, pregunté en el foro por la función salir y me dijeron que usara el return si lo estimaba conveniente
-    //asi que extendi esa respuesta a la funcion visitar
+    //Método que permite al jugador visitar el planeta y conocer todos los recursos que posee y caracteristicas del planeta
     ///////////////////
 
     @Override
     public boolean visitar(Jugador jugador) {
-        System.out.println("Visitando planeta Helado con temperatura de: " + radiacion + "°C");
+        System.out.println("Visitando planeta Radiactivo con temperatura de: " + getRadiacion() + "Sieverts");
         System.out.println("Cristales de Hidrógeno: " + getCristalesHidrogeno());
         System.out.println("Flores de Sodio: " + getFloresDeSodio());
         System.out.println("Uranio: " + getUranio());
-        return true;  // Solo retorna si la visita fue posible
-        
+        return true;
     }
 
     ////////////////////
