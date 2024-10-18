@@ -2,11 +2,23 @@ package Planetas;
 import Interactuable.*;
 public class CentroGalactico extends Planeta {
 
+    ////////////////////
+    //CentroGalactico()
+    //------------------
+    //Constructor de la clase CentroGalactico, asigna los valores de los atributos
+    ///////////////////
     public CentroGalactico() {
         super(1000000, 0, 0); 
     }
 
-
+    ////////////////////
+    //visitar(Jugador jugador)
+    //jugador: jugador que visita el planeta
+    //------------------
+    //Método que imprime por pantalla el final del juego y que a concluido con su historia
+    //------------------
+    //Retorna siempre true
+    ///////////////////
     @Override
     public boolean visitar(Jugador jugador) {
         System.out.println("FCE: Veo el centro galáctico al que te referías.");
@@ -35,12 +47,30 @@ public class CentroGalactico extends Planeta {
         return true;
     }
 
+    ////////////////////
+    //extraerRecursos(int tipo)
+    //tipo: tipo de recurso a extraer
+    //------------------
+    //Método que imprime por pantalla que el Centro Galáctico no tiene recursos para extraer
+    //------------------
+    //Retorna 0
+    ///////////////////
+
+    @Override
     public int extraerRecursos(int tipo) {
         System.out.println("El Centro Galáctico no tiene recursos para extraer, no tiene nada, solo nosotros y el tiempo.");
         System.out.println("Que es el tiempo sin que sea ciclico, que es el tiempo sin nosotros.");
         return 0;
     }
 
+    ////////////////////
+    //salir()
+    //------------------
+    //Método que imprime por pantalla que el jugador ha salido del Centro Galáctico
+    //------------------
+    //Retorna siempre true
+    ///////////////////
+    
     @Override
     public boolean salir() {
         System.out.println("El jugador ha salido del Centro Galáctico.");

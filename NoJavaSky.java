@@ -11,6 +11,15 @@ import Interactuable.Jugador;
 import Interactuable.Nave;
 
 public class NoJavaSky {
+    ////////////////////
+    //main(String[] args)
+    //args: argumentos de la línea de comandos
+    //------------------
+    //Método principal del juego, donde se ejecuta la lógica del juego y el flujo de interacción con el usuario, se encarga de manejar las acciones del jugador y la nave
+    //y las interacciones con los planetas, además de mostrar información relevante al jugador para que pueda tomar decisiones
+    //------------------
+    //No retorna nada
+    ///////////////////
     public static void main(String[] args) {
         MapaGalactico mg = new MapaGalactico();
         Jugador jugador = new Jugador();
@@ -32,7 +41,7 @@ public class NoJavaSky {
                 nave = new Nave(); 
                 mg = new MapaGalactico();
                 mg.generarHastaPlaneta(1);
-                mg.setPosicion(0); 
+                mg.setPosicionActual(0);
                 indiceDeReiniciarJuego = false;
             }
             tipoPlaneta = mg.getTipoPlanetaActual();
@@ -340,6 +349,16 @@ public class NoJavaSky {
         }
         scanner.close();
     }
+
+    ////////////////////
+    //mostrarInventario(Jugador jugador, Nave nave)
+    //jugador: jugador 
+    //nave: nave del jugador
+    //------------------
+    //Método que muestra el inventario del jugador y las caracteristicas de la nave
+    //------------------
+    //No retorna nada
+    ///////////////////
 
     public static void mostrarInventario(Jugador jugador, Nave nave){
         System.out.println("FCE: Cristales de Hidrógeno en tu inventario: " + jugador.getCristalesHidrogeno());

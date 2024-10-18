@@ -130,6 +130,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //jugador: jugador que visita el planeta
     //------------------
     //Método que permite al jugador visitar los asentamientos del planeta y comerciar con los habitantes, muestra las opciones de comercio
+    //------------------
+    //No retorna nada
     ///////////////////
 
     @Override
@@ -159,7 +161,10 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //nave: nave del jugador
     //------------------
     //Método que asigna el comercio elegido por el jugador, recibe la opción de comercio, el jugador y la nave
+    //Recibe al jugador y la nave para hacer las mejoras correspondientes y gastar los recursos necesarios
     //realiza el comercio y lo muestra
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void asignarTrade(int opcion, Jugador jugador, Nave nave) {
@@ -211,6 +216,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //No recibe parámetros
     //------------------
     //Método que permite salir del planeta
+    //------------------
+    //Retorna siempre true
     ///////////////////
     
     @Override
@@ -224,6 +231,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de cristales de hidrogeno en el planeta
+    //------------------
+    //Retorna la cantidad de cristales de hidrogeno en el planeta
     ///////////////////
 
     public int getCristalesHidrogeno() {

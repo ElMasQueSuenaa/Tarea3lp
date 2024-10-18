@@ -19,6 +19,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     //profundidad: profundidad del planeta
     //------------------
     //Constructor de la clase Oceanico, asigna los valores de los atributos
+    //------------------
+    //Retorna siempre true
     ///////////////////
 
     public Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad) {
@@ -34,6 +36,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     //jugador: jugador que visita el planeta
     //------------------
     //Método que permite al jugador visitar el planeta y conocer todos los recursos que posee y caracteristicas del planeta
+    //------------------
+    //Retorna siempre true
     ///////////////////
 
     @Override
@@ -55,6 +59,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     //No recibe parámetros
     //------------------
     //Método que retorna el valor de la variable asentamiento
+    //------------------
+    //Retorna un booleano
     ///////////////////
 
     public boolean getAsentamiento() {
@@ -66,6 +72,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     //tipo: tipo de recurso a extraer
     //------------------
     //Método que permite extraer recursos del planeta, recibe el tipo de recurso a extraer y retorna la cantidad de recursos disponibles
+    //------------------
+    //Retorna la cantidad de recursos disponibles
     ///////////////////
 
     @Override
@@ -88,6 +96,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     //cantidadExtraer: cantidad de recursos a extraer
     //------------------
     //Método que asigna la cantidad de recursos a extraer
+    //------------------
+    //Retorna la cantidad de recursos a extraer
     ///////////////////
 
     public int setCantidadExtraer(int cantidadExtraer) {
@@ -95,19 +105,54 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         return cantidadExtraer;
     }
 
+    ////////////////////
+    //getCristalesHidrogeno()
+    //No recibe parámetros
+    //------------------
+    //Método que retorna la cantidad de cristales de hidrógeno en el planeta
+    //------------------
+    //Retorna la cantidad de cristales de hidrógeno
+    ///////////////////
+
     public int getCristalesHidrogeno() {
         return cristalesHidrogeno;
     }
 
+    ////////////////////
+    //getFloresDeSodio()
+    //No recibe parámetros
+    //------------------
+    //Método que retorna la cantidad de flores de sodio en el planeta
+    //------------------
+    //Retorna la cantidad de flores de sodio
+    ///////////////////
     public int getFloresDeSodio() {
         return floresDeSodio;
     }
+
+    ////////////////////
+    //salir()
+    //No recibe parámetros
+    //------------------
+    //Método que permite salir del planeta
+    //------------------
+    //Retorna siempre true
+    ///////////////////
 
     @Override
     public boolean salir() {
         System.out.println("Saliendo del planeta Oceánico...");
         return true;
     }
+
+    ////////////////////
+    //setAsentamiento()
+    //No recibe parámetros
+    //------------------
+    //Método que asigna un valor aleatorio a la variable asentamiento
+    //------------------
+    //No retorna nada
+    ///////////////////
 
     public void setAsentamiento() {
         int aux = ThreadLocalRandom.current().nextInt(0, 101);
@@ -117,6 +162,15 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
             this.asentamiento = false;
         }
     }
+
+    ////////////////////
+    //visitarAsentamientos(Jugador jugador)
+    //jugador: jugador que visita el planeta
+    //------------------
+    //Método que permite al jugador visitar los asentamientos del planeta y se muestran las ofertas correspondientes
+    //------------------
+    //No retorna nada
+    ///////////////////
 
     @Override
     public void visitarAsentamientos(Jugador jugador) {
@@ -138,6 +192,19 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         System.out.println("El comerciante te mira esperando tu elección");
     }
 
+    ////////////////////
+    //asignarTrade(int opcion, Jugador jugador, Nave nave)
+    //opcion: opción de comercio elegida por el jugador
+    //jugador: jugador que comercia con el asentamiento
+    //nave: nave del jugador
+    //------------------
+    //Método que asigna el comercio elegido por el jugador, recibe la opción de comercio, el jugador y la nave
+    //Recibe al jugador y la nave para hacer las mejoras correspondientes y gastar los recursos necesarios
+    //realiza el comercio y lo muestra
+    //------------------
+    //No retorna nada
+    ///////////////////
+    
     public void asignarTrade(int opcion, Jugador jugador, Nave nave) {
         int precio = 0;
         int cantidad = 0;
