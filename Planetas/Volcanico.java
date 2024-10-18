@@ -34,6 +34,8 @@ public class Volcanico extends Planeta {
     //jugador: jugador que visita el planeta
     //------------------
     //Método que permite al jugador visitar el planeta y conocer todos los recursos que posee y caracteristicas del planeta
+    //------------------
+    //Retorna siempre true
     ///////////////////
     
     @Override
@@ -50,6 +52,8 @@ public class Volcanico extends Planeta {
     //tipo: tipo de recurso a extraer
     //------------------
     //Método que permite extraer recursos del planeta, recibe el tipo de recurso a extraer y retorna la cantidad de recursos disponibles
+    //------------------
+    //Retorna la cantidad de recursos disponibles
     ///////////////////
 
     @Override
@@ -72,6 +76,8 @@ public class Volcanico extends Planeta {
     //cantidadExtraer: cantidad de recursos a extraer
     //------------------
     //Método que asigna la cantidad de recursos a extraer
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void setCantidadExtraer(int cantidadExtraer) {
@@ -83,6 +89,8 @@ public class Volcanico extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que permite salir del planeta
+    //------------------
+    //Retorna siempre true
     ///////////////////
 
     @Override
@@ -96,6 +104,8 @@ public class Volcanico extends Planeta {
     //platino: cantidad de platino en el planeta
     //------------------
     //Método que asigna la cantidad de platino en el planeta
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void setPlatino(int platino){
@@ -107,6 +117,8 @@ public class Volcanico extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de cristales de hidrogeno en el planeta
+    //------------------
+    //Retorna la cantidad de cristales de hidrogeno en el planeta
     ///////////////////
 
     public int getCristalesHidrogeno(){
@@ -118,6 +130,8 @@ public class Volcanico extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de flores de sodio en el planeta
+    //------------------
+    //Retorna la cantidad de flores de sodio en el planeta
     ///////////////////
         
     public int getFloresDeSodio(){
@@ -129,6 +143,8 @@ public class Volcanico extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de platino en el planeta
+    //------------------
+    //Retorna la cantidad de platino en el planeta
     ///////////////////
 
     public int getPlatino(){
@@ -140,6 +156,8 @@ public class Volcanico extends Planeta {
     //cristalesHidrogeno: cantidad de cristales de hidrógeno en el planeta
     //------------------
     //Método que asigna la cantidad de cristales de hidrógeno en el planeta
+    //-----------------
+    //No retorna nada
     ///////////////////
 
     public void setCristalesHidrogeno(int cristalesHidrogeno){
@@ -151,6 +169,8 @@ public class Volcanico extends Planeta {
     //floresDeSodio: cantidad de flores de sodio en el planeta
     //------------------
     //Método que asigna la cantidad de flores de sodio en el planeta
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void setFloresDeSodio(int floresDeSodio){
@@ -162,6 +182,8 @@ public class Volcanico extends Planeta {
     //temperatura: temperatura del planeta
     //------------------
     //Método que asigna la temperatura del planeta
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void setTemperatura(int temperatura){

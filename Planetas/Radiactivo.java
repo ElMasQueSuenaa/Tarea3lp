@@ -18,6 +18,8 @@ public class Radiactivo extends Planeta {
     //uranio: cantidad de uranio en el planeta
     //------------------
     //Constructor de la clase Radiactivo, asigna los valores de los parámetros a los atributos de la clase, además de los atributos heredados de la clase Planeta
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public Radiactivo(int radio, int cristalesHidrogeno, int floresDeSodio, int radiacion, int uranio) {
@@ -33,6 +35,8 @@ public class Radiactivo extends Planeta {
     //jugador: jugador que visita el planeta
     //------------------
     //Método que permite al jugador visitar el planeta y conocer todos los recursos que posee y caracteristicas del planeta
+    //------------------
+    //Retorna siempre true
     ///////////////////
 
     @Override
@@ -52,6 +56,8 @@ public class Radiactivo extends Planeta {
     //retorna siempre true, pregunté en el foro por la función salir y me dijeron que usara el return si lo estimaba conveniente
     //le hice Override a la función salir de la clase Planeta ya que pensaba que se podía hacer algo más con la salida del planeta
     //pero no se me ocurrió nada, perdón por la confusión
+    //------------------
+    //Retorna siempre true
     ///////////////////
 
     @Override
@@ -65,7 +71,8 @@ public class Radiactivo extends Planeta {
     //tipo: tipo de recurso a extraer
     //------------------
     //Método que se encarga de extraer recursos del planeta, recibe un tipo de recurso a extraer
-    //y retorna la cantidad de recursos extraidos para que el main lo maneje
+    //------------------
+    //Retorna la cantidad de recursos disponibles para que el main lo maneje
     ///////////////////
 
     @Override
@@ -89,6 +96,8 @@ public class Radiactivo extends Planeta {
     //------------------
     //Método que se encarga de asignar la cantidad de recursos a extraer
     //retorna la cantidad de recursos a extraer
+    //------------------
+    //Retorna la cantidad de recursos a extraer
     ///////////////////
 
     public int setCantidadExtraer(int cantidadExtraer) {
@@ -101,6 +110,8 @@ public class Radiactivo extends Planeta {
     //uranio: cantidad de uranio en el planeta
     //------------------
     //Método que asigna la cantidad de uranio en el planeta
+    //-----------------
+    //No retorna nada
     ///////////////////
 
     public void setUranio(int uranio){
@@ -112,6 +123,8 @@ public class Radiactivo extends Planeta {
     //radiacion: radiación del planeta
     //------------------
     //Método que asigna la radiación del planeta
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void setRadiacion(int radiacion){
@@ -134,6 +147,8 @@ public class Radiactivo extends Planeta {
     //floresDeSodio: cantidad de flores de sodio en el planeta
     //------------------
     //Método que asigna la cantidad de flores de sodio en el planeta
+    ///----------------
+    //No retorna nada
     ///////////////////
 
     public void setFloresDeSodio(int floresDeSodio){
@@ -146,6 +161,8 @@ public class Radiactivo extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de cristales de hidrógeno en el planeta
+    //------------------
+    //Retorna la cantidad de cristales de hidrógeno en el planeta
     ///////////////////
     
     public int getCristalesHidrogeno(){
@@ -157,6 +174,8 @@ public class Radiactivo extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de flores de sodio en el planeta
+    //------------------
+    //Retorna la cantidad de flores de sodio en el planeta
     ///////////////////
     
     public int getFloresDeSodio(){
@@ -168,6 +187,8 @@ public class Radiactivo extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la cantidad de uranio en el planeta
+    //------------------
+    //Retorna la cantidad de uranio en el planeta
     ///////////////////
 
     public int getUranio(){
@@ -179,6 +200,8 @@ public class Radiactivo extends Planeta {
     //No recibe parámetros
     //------------------
     //Método que retorna la radiación del planeta
+    //------------------
+    //Retorna la radiación del planeta
     ///////////////////
 
     public int getRadiacion(){

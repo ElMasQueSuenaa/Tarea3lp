@@ -35,6 +35,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //jugador: jugador que visita el planeta
     //------------------
     //Método que permite al jugador visitar el planeta y conocer todos los recursos que posee y caracteristicas del planeta
+    //------------------
+    //Retorna siempre true
     ///////////////////
 
     @Override
@@ -57,6 +59,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //No recibe parámetros
     //------------------
     //Método que asigna un valor aleatorio a la variable asentamiento
+    //------------------
+    //No retorna nada
     ///////////////////
 
     public void setAsentamiento() {
@@ -74,6 +78,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //No recibe parámetros
     //------------------
     //Método que retorna el valor de la variable asentamiento
+    //------------------
+    //Retorna el valor de la variable asentamiento
     ///////////////////
 
     public boolean getAsentamiento() {
@@ -85,6 +91,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //tipo: tipo de recurso a extraer
     //------------------
     //Método que permite extraer recursos del planeta, recibe el tipo de recurso a extraer y retorna la cantidad de recursos disponibles
+    //------------------
+    //Retorna la cantidad de recursos disponibles para que el main lo maneje
     ///////////////////
 
     @Override
@@ -99,7 +107,7 @@ public class Helado extends Planeta implements tieneAsentamientos {
             System.out.println("FCE: Tipo de recurso inválido.");
             return 0;
         }
-        return cantidadDisponible - cantidadExtraer;  // Retorna los recursos disponibles para que el main lo maneje
+        return cantidadDisponible - cantidadExtraer; 
     }
 
     ////////////////////
@@ -108,6 +116,8 @@ public class Helado extends Planeta implements tieneAsentamientos {
     //------------------
     //Método que asigna la cantidad de recursos a extraer
     //retorna la cantidad de recursos a extraer
+    //------------------
+    //Retorna la cantidad de recursos a extraer
     ///////////////////
 
     public int setCantidadExtraer(int cantidadExtraer) {

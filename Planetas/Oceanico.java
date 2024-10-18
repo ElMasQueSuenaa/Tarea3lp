@@ -83,6 +83,13 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         return cantidadDisponible - cantidadExtraer;
     }
 
+    ////////////////////
+    //setCantidadExtraer(int cantidadExtraer)
+    //cantidadExtraer: cantidad de recursos a extraer
+    //------------------
+    //Método que asigna la cantidad de recursos a extraer
+    ///////////////////
+
     public int setCantidadExtraer(int cantidadExtraer) {
         this.cantidadExtraer = cantidadExtraer;
         return cantidadExtraer;
